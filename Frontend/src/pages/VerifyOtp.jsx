@@ -127,11 +127,11 @@ const VerifyOTP = () => {
             withCredentials: true,
           }
         );
-        localStorage.setItem("authToken", document.cookie.token);
         setLoading(false);
         if (response.data.success) {
           setIsLogging(false);
           setLoggedIn(true);
+          localStorage.setItem("authToken", response.data.token);
           navigate("/dashboard");
           toast.success(response.data.message, {
             autoClose: 2000,
