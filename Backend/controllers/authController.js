@@ -177,12 +177,13 @@ export const login = async (req, res) => {
     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
       expiresIn: "5m",
     });
-    res.cookie("verifyToken", token, {
-      httpOnly: process.env.NODE_ENV === "production",
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 5 * 60 * 1000,
-    });
+    res.cookie("verifyToken", token);
+    // {
+    //   httpOnly: process.env.NODE_ENV === "production",
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    //   maxAge: 5 * 60 * 1000,
+    // }
     const otp = String(Math.floor(Math.random() * 9000 + 1000));
     const hashedOtp = await bcrypt.hash(otp, 10);
     user.loginOtp = hashedOtp;
