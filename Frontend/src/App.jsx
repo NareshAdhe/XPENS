@@ -21,8 +21,8 @@ const App = () => {
     return (
       <div className="flex justify-center items-center h-screen w-screen">
         <Audio
-          height="200"
-          width="200"
+          height="100"
+          width="100"
           color="#4842d2"
           ariaLabel="audio-loading"
           wrapperClass="wrapper-class"
