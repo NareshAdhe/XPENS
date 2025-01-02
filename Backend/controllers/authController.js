@@ -415,6 +415,7 @@ export const verifyOtp = async (req, res) => {
     res.json({
       success: true,
       message: "Logged in successfully",
+      token,
     });
   } catch (error) {
     res.json({

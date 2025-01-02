@@ -127,8 +127,6 @@ const VerifyOTP = () => {
             withCredentials: true,
           }
         );
-        console.log(document.cookie);
-        console.log(document.cookie.token);
         localStorage.setItem("authToken", document.cookie.token);
         setLoading(false);
         if (response.data.success) {
