@@ -230,8 +230,8 @@ const Context = ({ children }) => {
         } catch (error) {
           localStorage.removeItem("authToken");
         }
-        setIsRefreshing(false);
       }
+      setIsRefreshing(false);
     };
 
     verifyToken();
