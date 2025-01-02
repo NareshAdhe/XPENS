@@ -13,7 +13,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "https://xpensfrontend.vercel.app", // Fallback for testing
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Fallback for testing
     credentials: true,
   })
 );
