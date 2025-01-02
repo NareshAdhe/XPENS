@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
-    },
-    {
       "source": "/dashboard/(.*)",
       "destination": "/dashboard"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
