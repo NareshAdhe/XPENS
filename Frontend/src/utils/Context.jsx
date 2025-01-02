@@ -224,16 +224,13 @@ const Context = ({ children }) => {
 
           if (response.data.success) {
             setLoggedIn(true);
-            setIsRefreshing(false);
           } else {
             localStorage.removeItem("authToken");
-            setIsRefreshing(false);
           }
         } catch (error) {
-          setIsRefreshing(false);
-          console.error("Token verification failed:", error);
           localStorage.removeItem("authToken");
         }
+        setIsRefreshing(false);
       }
     };
 

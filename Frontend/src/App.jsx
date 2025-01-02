@@ -16,7 +16,22 @@ import Reset from "./pages/Reset";
 
 const App = () => {
   const { loggedIn, isLogging, isRefreshing } = useContext(AppContext);
-  let content = (
+  if (isRefreshing) {
+    return (
+      <div className="flex justify-center items-center h-screen w-screen">
+        <Audio
+          height="200"
+          width="200"
+          color="#4842d2"
+          ariaLabel="audio-loading"
+          wrapperClass="wrapper-class"
+          visible={true}
+        />
+      </div>
+    );
+  }
+
+  return (
     <>
       {!loggedIn && !isLogging && (
         <div className="flex flex-col justify-center w-screen">
@@ -59,22 +74,6 @@ const App = () => {
       )}
     </>
   );
-  if (isRefreshing) {
-    content = (
-      <div className="flex justify-center items-center h-screen w-screen">
-        <Audio
-          height="200"
-          width="200"
-          color="#4842d2"
-          ariaLabel="audio-loading"
-          wrapperClass="wrapper-class"
-          visible={true}
-        />
-      </div>
-    );
-  }
-
-  return { content };
 };
 
 export default App;
