@@ -44,6 +44,7 @@ export const register = async (req, res) => {
     res.cookie("verifyToken", token, {
       httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 5 * 60 * 1000,
     });
     const otp = String(Math.floor(Math.random() * 9000 + 1000));
@@ -179,6 +180,7 @@ export const login = async (req, res) => {
     res.cookie("verifyToken", token, {
       httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 5 * 60 * 1000,
     });
     const otp = String(Math.floor(Math.random() * 9000 + 1000));
@@ -308,6 +310,7 @@ export const verifyOtp = async (req, res) => {
     res.clearCookie("verifyToken", {
       httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     const token = jwt.sign(
       { userId: user._id.toString() },
@@ -433,7 +436,7 @@ export const logout = async (req, res) => {
     res.clearCookie("token", {
       httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     res.json({
       success: true,
