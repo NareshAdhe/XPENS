@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "https://xpens-eta.vercel.app",
+      "https://xpensfrontend.vercel.app",
       "https://xpensfrontend-mb39i35vs-nareshs-projects-1c48ee48.vercel.app",
       "http://localhost:5173",
     ],
