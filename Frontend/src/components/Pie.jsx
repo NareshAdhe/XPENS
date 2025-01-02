@@ -17,10 +17,20 @@ const Pie = () => {
     fetchCategoryIncomeData,
   } = useContext(AppContext);
 
+  const calculateMonthFirstDay = (givenMonth) => {
+    const date = new Date();
+    const firstDate = new Date(date.getFullYear(), givenMonth, 1);
+    return firstDate.getDay();
+  };
+
   const date = new Date();
+  const currentMonthFirstDay = new Date(date.getFullYear(), date.getMonth(), 1);
   let weekIndex = Math.floor((date.getDate() - 1) / 7);
   weekIndex = Math.min(weekIndex, 3);
   let currentMonth = date.getMonth();
+  const [firstDayOfMonth, setFirstDayOfMonth] = useState(
+    currentMonthFirstDay.getDay()
+  );
   const [incomeCategory, setIncomeCategory] = useState("salary");
   const [expenseCategory, setExpenseCategory] = useState("housing");
   const [time, setTime] = useState("daily");
@@ -30,16 +40,22 @@ const Pie = () => {
   const [dailyMonth, setDailyMonth] = useState(currentMonth);
   const [data, setData] = useState(dailyCategoryExpense);
   const [loading, setLoading] = useState(false);
-
+  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [labels, setLabels] = useState([
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
+    weekDays[firstDayOfMonth],
+    weekDays[(firstDayOfMonth + 1) % 7],
+    weekDays[(firstDayOfMonth + 2) % 7],
+    weekDays[(firstDayOfMonth + 3) % 7],
+    weekDays[(firstDayOfMonth + 4) % 7],
+    weekDays[(firstDayOfMonth + 5) % 7],
+    weekDays[(firstDayOfMonth + 6) % 7],
   ]);
+
+  useEffect(() => {
+    if (time === "daily")
+      setFirstDayOfMonth(calculateMonthFirstDay(dailyMonth));
+    else setFirstDayOfMonth(calculateMonthFirstDay(month));
+  }, [month, dailyMonth]);
 
   const dailyBackgroundColors = [
     "rgba(255, 99, 132, 0.2)",
@@ -140,7 +156,15 @@ const Pie = () => {
 
     const newLabels = isWeekly
       ? ["Week 1", "Week 2", "Week 3", "Week 4"]
-      : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      : [
+          weekDays[firstDayOfMonth],
+          weekDays[(firstDayOfMonth + 1) % 7],
+          weekDays[(firstDayOfMonth + 2) % 7],
+          weekDays[(firstDayOfMonth + 3) % 7],
+          weekDays[(firstDayOfMonth + 4) % 7],
+          weekDays[(firstDayOfMonth + 5) % 7],
+          weekDays[(firstDayOfMonth + 6) % 7],
+        ];
     setData(newData);
     setLabels(newLabels);
     setChartData({

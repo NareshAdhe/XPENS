@@ -370,12 +370,15 @@ export const dailyExpense = async (req, res) => {
       let [expenseDate, expenseMonth, expenseYear] = expense.date
         .split("-")
         .map(Number);
-      const date = new Date(expenseYear, expenseMonth - 1, expenseDate);
-      const dayOfWeek = date.getDay() - 1;
-      let weekIndex = Math.floor((expenseDate - 1) / 7);
+      expenseDate--;
+      let weekIndex = Math.floor(expenseDate / 7);
       weekIndex = Math.min(weekIndex, 3);
+      if (expenseDate < 28) {
+        expenseDate = expenseDate % 7;
+      } else expenseDate = 6;
       if (Number(week) === weekIndex && Number(month) === expenseMonth - 1) {
-        dailyExpenses[expenseMonth - 1][weekIndex][dayOfWeek] += expense.amount;
+        dailyExpenses[expenseMonth - 1][weekIndex][expenseDate] +=
+          expense.amount;
       }
     });
     return res.json({
@@ -408,7 +411,8 @@ export const weeklyExpense = async (req, res) => {
       let [expenseDate, expenseMonth, expenseYear] = expense.date
         .split("-")
         .map(Number);
-      let weekIndex = Math.floor((expenseDate - 1) / 7);
+      expenseDate--;
+      let weekIndex = Math.floor(expenseDate / 7);
       weekIndex = Math.min(weekIndex, 3);
       if (Number(month) === expenseMonth - 1) {
         weeklyExpenses[expenseMonth - 1][weekIndex] += expense.amount;
@@ -448,12 +452,14 @@ export const dailyCategoryExpense = async (req, res) => {
       let [expenseDate, expenseMonth, expenseYear] = expense.date
         .split("-")
         .map(Number);
-      const date = new Date(expenseYear, expenseMonth - 1, expenseDate);
-      const dayOfWeek = date.getDay() - 1;
-      let weekIndex = Math.floor((expenseDate - 1) / 7);
+      expenseDate--;
+      let weekIndex = Math.floor(expenseDate / 7);
       weekIndex = Math.min(weekIndex, 3);
+      if (expenseDate < 28) {
+        expenseDate = expenseDate % 7;
+      } else expenseDate = 6;
       if (Number(week) === weekIndex && Number(month) === expenseMonth - 1) {
-        dailyCategoryExpenses[expenseMonth - 1][weekIndex][dayOfWeek] +=
+        dailyCategoryExpenses[expenseMonth - 1][weekIndex][expenseDate] +=
           expense.amount;
       }
     });
@@ -487,7 +493,8 @@ export const weeklyCategoryExpense = async (req, res) => {
       let [expenseDate, expenseMonth, expenseYear] = expense.date
         .split("-")
         .map(Number);
-      let weekIndex = Math.floor((expenseDate - 1) / 7);
+      expenseDate--;
+      let weekIndex = Math.floor(expenseDate / 7);
       weekIndex = Math.min(weekIndex, 3);
       if (Number(month) === expenseMonth - 1) {
         weeklyCategoryExpenses[expenseMonth - 1][weekIndex] += expense.amount;

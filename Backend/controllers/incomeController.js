@@ -187,13 +187,14 @@ export const dailyIncome = async (req, res) => {
         .split("-")
         .map(Number);
 
-      const date = new Date(incomeYear, incomeMonth - 1, incomeDate);
-      const dayOfWeek = date.getDay() - 1; // saturday = 0 sunday = 1 ...
-      if (dayOfWeek === -1) dayOfWeek = 6; // for saturday as it is 0
-      let weekIndex = Math.floor(incomeDate - 1 / 7);
+      incomeDate--;
+      let weekIndex = Math.floor(incomeDate / 7);
       weekIndex = Math.min(weekIndex, 3);
+      if (incomeDate < 28) {
+        incomeDate = incomeDate % 7;
+      } else incomeDate = 6;
       if (Number(week) === weekIndex && Number(month) === incomeMonth - 1) {
-        dailyIncomes[incomeMonth - 1][weekIndex][dayOfWeek] += income.amount;
+        dailyIncomes[incomeMonth - 1][weekIndex][incomeDate] += income.amount;
       }
     });
 
@@ -227,7 +228,8 @@ export const weeklyIncome = async (req, res) => {
       let [incomeDate, incomeMonth, incomeYear] = income.date
         .split("-")
         .map(Number);
-      let weekIndex = Math.floor((incomeDate - 1) / 7);
+      incomeDate--;
+      let weekIndex = Math.floor(incomeDate / 7);
       weekIndex = Math.min(weekIndex, 3);
       if (Number(month) === incomeMonth - 1) {
         weeklyIncomes[incomeMonth - 1][weekIndex] += income.amount;
@@ -267,12 +269,14 @@ export const dailyCategoryIncome = async (req, res) => {
       let [incomeDate, incomeMonth, incomeYear] = income.date
         .split("-")
         .map(Number);
-      const date = new Date(incomeYear, incomeMonth - 1, incomeDate);
-      let dayOfWeek = date.getDay() - 1;
-      let weekIndex = Math.floor((incomeDate - 1) / 7);
+      incomeDate--;
+      let weekIndex = Math.floor(incomeDate / 7);
       weekIndex = Math.min(weekIndex, 3);
+      if (incomeDate < 28) {
+        incomeDate = incomeDate % 7;
+      } else incomeDate = 6;
       if (Number(week) === weekIndex && Number(month) === incomeMonth - 1) {
-        dailyCategoryIncomes[incomeMonth - 1][weekIndex][dayOfWeek] +=
+        dailyCategoryIncomes[incomeMonth - 1][weekIndex][incomeDate] +=
           income.amount;
       }
     });
@@ -306,7 +310,8 @@ export const weeklyCategoryIncome = async (req, res) => {
       const [incomeDate, incomeMonth, incomeYear] = income.date
         .split("-")
         .map(Number);
-      let weekIndex = Math.floor((incomeDate - 1) / 7);
+      incomeDate--;
+      let weekIndex = Math.floor(incomeDate / 7);
       weekIndex = Math.min(weekIndex, 3);
       if (Number(month) === incomeMonth - 1) {
         weeklyCategoryIncomes[incomeMonth - 1][weekIndex] += income.amount;
