@@ -31,69 +31,85 @@ const Context = ({ children }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const navigate = useNavigate();
 
-  const fetchExpenseData = async (week, month) => {
+  const fetchExpenseData = async (week, month, handleLoading) => {
+    handleLoading(true);
     try {
-      const dailyUrl = `${backendURI}/api/expenses/dailyExpense?week=${week}&month=${month}`;
-      const weeklyUrl = `${backendURI}/api/expenses/weeklyExpense?month=${month}`;
-      const dailyRes = await axios.get(dailyUrl, {
-        withCredentials: true,
-      });
-      const weeklyRes = await axios.get(weeklyUrl, {
-        withCredentials: true,
-      });
-      if (dailyRes.data.success) {
-        setDailyExpense(dailyRes.data.dailyExpenses);
-      } else {
-        toast.error(dailyRes.data.message, {
-          autoClose: 2000,
+      if (week !== null) {
+        const dailyUrl = `${backendURI}/api/expenses/dailyExpense?week=${week}&month=${month}`;
+        const dailyRes = await axios.get(dailyUrl, {
+          withCredentials: true,
         });
-      }
-      if (weeklyRes.data.success) {
-        setWeeklyExpense(weeklyRes.data.weeklyExpenses);
+        if (dailyRes.data.success) {
+          setDailyExpense(dailyRes.data.dailyExpenses);
+        } else {
+          toast.error(dailyRes.data.message, {
+            autoClose: 2000,
+          });
+        }
       } else {
-        toast.error(weeklyRes.data.message, {
-          autoClose: 2000,
+        const weeklyUrl = `${backendURI}/api/expenses/weeklyExpense?month=${month}`;
+        const weeklyRes = await axios.get(weeklyUrl, {
+          withCredentials: true,
         });
+        if (weeklyRes.data.success) {
+          setWeeklyExpense(weeklyRes.data.weeklyExpenses);
+        } else {
+          toast.error(weeklyRes.data.message, {
+            autoClose: 2000,
+          });
+        }
       }
     } catch (error) {
       toast.error(error.message, {
         autoClose: 2000,
       });
     }
+    handleLoading(false);
   };
 
-  const fetchIncomeData = async (week, month) => {
+  const fetchIncomeData = async (week, month, handleLoading) => {
+    handleLoading(true);
     try {
-      const dailyUrl = `${backendURI}/api/incomes/dailyIncome?week=${week}&month=${month}`;
-      const weeklyUrl = `${backendURI}/api/incomes/weeklyIncome?month=${month}`;
-      const dailyRes = await axios.get(dailyUrl, {
-        withCredentials: true,
-      });
-      const weeklyRes = await axios.get(weeklyUrl, {
-        withCredentials: true,
-      });
-      if (dailyRes.data.success) {
-        setDailyIncome(dailyRes.data.dailyIncomes);
-      } else {
-        toast.error(dailyRes.data.message, {
-          autoClose: 2000,
+      if (week !== null) {
+        const dailyUrl = `${backendURI}/api/incomes/dailyIncome?week=${week}&month=${month}`;
+        const dailyRes = await axios.get(dailyUrl, {
+          withCredentials: true,
         });
-      }
-      if (weeklyRes.data.success) {
-        setWeeklyIncome(weeklyRes.data.weeklyIncomes);
+        if (dailyRes.data.success) {
+          setDailyIncome(dailyRes.data.dailyIncomes);
+        } else {
+          toast.error(dailyRes.data.message, {
+            autoClose: 2000,
+          });
+        }
       } else {
-        toast.error(weeklyRes.data.message, {
-          autoClose: 2000,
+        const weeklyUrl = `${backendURI}/api/incomes/weeklyIncome?month=${month}`;
+        const weeklyRes = await axios.get(weeklyUrl, {
+          withCredentials: true,
         });
+        if (weeklyRes.data.success) {
+          setWeeklyIncome(weeklyRes.data.weeklyIncomes);
+        } else {
+          toast.error(weeklyRes.data.message, {
+            autoClose: 2000,
+          });
+        }
       }
     } catch (error) {
       toast.error(error.message, {
         autoClose: 2000,
       });
     }
+    handleLoading(false);
   };
 
-  const fetchCategoryExpenseData = async (week = null, month, category) => {
+  const fetchCategoryExpenseData = async (
+    week = null,
+    month,
+    category,
+    handleLoading
+  ) => {
+    handleLoading(true);
     try {
       if (week !== null) {
         const dailyUrl = `${backendURI}/api/expenses/dailyCategoryExpense?week=${week}&month=${month}&category=${category}`;
@@ -103,7 +119,6 @@ const Context = ({ children }) => {
         if (dailyRes.data.success) {
           setDailyCategoryExpense(dailyRes.data.dailyCategoryExpenses);
         } else {
-          console.log("Error from backend invoked");
           toast.error(dailyRes.data.message, {
             autoClose: 2000,
           });
@@ -126,9 +141,16 @@ const Context = ({ children }) => {
         autoClose: 2000,
       });
     }
+    handleLoading(false);
   };
 
-  const fetchCategoryIncomeData = async (week = null, month, category) => {
+  const fetchCategoryIncomeData = async (
+    week = null,
+    month,
+    category,
+    handleLoading
+  ) => {
+    handleLoading(true);
     try {
       if (week !== null) {
         const dailyUrl = `${backendURI}/api/incomes/dailyCategoryIncome?week=${week}&month=${month}&category=${category}`;
@@ -160,6 +182,7 @@ const Context = ({ children }) => {
         autoClose: 2000,
       });
     }
+    handleLoading(false);
   };
 
   const fetchUser = async () => {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Chart as ChartJS } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { AppContext } from "../utils/Context";
+import { Audio } from "react-loader-spinner";
 
 const Chart = () => {
   const {
@@ -34,6 +34,7 @@ const Chart = () => {
   const [month, setMonth] = useState(currentMonth);
   const [dailyMonth, setDailyMonth] = useState(currentMonth);
   const [data, setData] = useState([...dailyExpense]);
+  const [loading, setLoading] = useState(false);
 
   const [chartData, setChartData] = useState({
     labels: labels,
@@ -51,11 +52,11 @@ const Chart = () => {
 
   useEffect(() => {
     if (time === "daily") {
-      fetchExpenseData(week, dailyMonth);
-      fetchIncomeData(week, dailyMonth);
+      fetchExpenseData(week, dailyMonth, handleLoading);
+      fetchIncomeData(week, dailyMonth, handleLoading);
     } else {
-      fetchExpenseData(week, month);
-      fetchIncomeData(week, month);
+      fetchExpenseData(null, month, handleLoading);
+      fetchIncomeData(null, month, handleLoading);
     }
   }, [week, month, dailyMonth, updateExpense, updateIncome]);
 
@@ -127,6 +128,10 @@ const Chart = () => {
         },
       },
     },
+  };
+
+  const handleLoading = (val) => {
+    setLoading(val);
   };
 
   const handleTypeChange = (newType) => {
@@ -326,7 +331,20 @@ const Chart = () => {
         </div>
       </div>
       <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px]">
-        <Bar data={chartData} options={options} />
+        {loading ? (
+          <div className="w-full h-full flex items-center justify-center">
+            <Audio
+              height="50"
+              width="50"
+              color="#4842d2"
+              ariaLabel="audio-loading"
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </div>
+        ) : (
+          <Bar data={chartData} options={options} />
+        )}
       </div>
     </div>
   );

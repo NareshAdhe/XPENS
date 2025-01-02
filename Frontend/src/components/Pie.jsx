@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { AppContext } from "../utils/Context";
+import { Audio } from "react-loader-spinner";
 
 const Pie = () => {
   const {
@@ -26,6 +27,7 @@ const Pie = () => {
   const [month, setMonth] = useState(currentMonth);
   const [dailyMonth, setDailyMonth] = useState(currentMonth);
   const [data, setData] = useState(dailyCategoryExpense);
+  const [loading, setLoading] = useState(false);
 
   const [labels, setLabels] = useState([
     "Mon",
@@ -90,6 +92,10 @@ const Pie = () => {
       },
     ],
   });
+
+  const handleLoading = (value) => {
+    setLoading(value);
+  };
 
   const handleTypeChange = (newType) => {
     setType(newType);
@@ -165,19 +171,25 @@ const Pie = () => {
   useEffect(() => {
     if (time === "daily") {
       if (type === "expense") {
-        console.log("Sending request for dailyCategoryExpense");
-        fetchCategoryExpenseData(week, dailyMonth, expenseCategory);
+        fetchCategoryExpenseData(
+          week,
+          dailyMonth,
+          expenseCategory,
+          handleLoading
+        );
       } else {
-        console.log("Sending request for dailyCategoryIncome");
-        fetchCategoryIncomeData(week, dailyMonth, incomeCategory);
+        fetchCategoryIncomeData(
+          week,
+          dailyMonth,
+          incomeCategory,
+          handleLoading
+        );
       }
     } else {
       if (type === "expense") {
-        console.log("Sending request for weeklyCategoryExpense");
-        fetchCategoryExpenseData(null, month, expenseCategory);
+        fetchCategoryExpenseData(null, month, expenseCategory, handleLoading);
       } else {
-        console.log("Sending request for weeklyCategoryIncome");
-        fetchCategoryIncomeData(null, month, incomeCategory);
+        fetchCategoryIncomeData(null, month, incomeCategory, handleLoading);
       }
     }
   }, [
@@ -465,7 +477,20 @@ const Pie = () => {
       </div>
       <div className="mx-2 mb-2">{categoryOptions}</div>
       <div className="w-full h-[250px] sm:h-[400px] lg:h-[500px] p-2">
-        <Doughnut data={chartData} options={options} />
+        {loading ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <Audio
+              height="50"
+              width="50"
+              color="#4842d2"
+              ariaLabel="audio-loading"
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </div>
+        ) : (
+          <Doughnut data={chartData} options={options} />
+        )}
       </div>
     </div>
   );
