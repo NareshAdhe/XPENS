@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import VerifyOTP from "./pages/VerifyOtp";
 import { AppContext } from "./utils/Context";
 import Reset from "./pages/Reset";
+import { Audio } from "react-loader-spinner";
 
 const App = () => {
   const { loggedIn, isLogging, isRefreshing } = useContext(AppContext);
