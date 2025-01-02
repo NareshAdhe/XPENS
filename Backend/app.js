@@ -13,10 +13,11 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL || "https://xpensfrontend.vercel.app", // Fallback for testing
     credentials: true,
   })
 );
+console.log("CORS origin set to:", process.env.FRONTEND_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
