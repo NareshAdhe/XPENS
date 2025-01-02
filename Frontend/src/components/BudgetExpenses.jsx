@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import ExpenseItem from "./ExpenseItem";
 import { AppContext } from "../utils/Context";
 import axios from "axios";
@@ -44,9 +44,7 @@ const BudgetExpenses = ({ incomeId }) => {
             />
           ))
         ) : (
-          <p className="text-center text-gray-500">
-            No expenses recorded yet. Start adding your expenses!
-          </p>
+          <p className="text-center text-gray-500">No expenses recorded yet!</p>
         )}
       </div>
     </div>
