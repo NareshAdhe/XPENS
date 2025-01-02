@@ -177,7 +177,9 @@ export const login = async (req, res) => {
     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
       expiresIn: "5m",
     });
-    res.cookie("verifyToken", token);
+    res.cookie("verifyToken", token, {
+      sameSite: "none",
+    });
     // {
     //   httpOnly: process.env.NODE_ENV === "production",
     //   secure: process.env.NODE_ENV === "production",
