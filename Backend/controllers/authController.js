@@ -926,6 +926,6 @@ export const verifyToken = async (req, res) => {
     if (err) {
       return res.json({ success: false, message: "Invalid token" });
     }
-    res.json({ success: true, user });
+    res.json({ success: true });
   });
 };
