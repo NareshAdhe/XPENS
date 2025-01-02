@@ -224,11 +224,11 @@ const Context = ({ children }) => {
   }, [loggedIn]);
 
   useEffect(() => {
-    fetchBudgetList();
+    if (loggedIn) fetchBudgetList();
   }, [updateBudget]);
 
   useEffect(() => {
-    fetchExpenseList();
+    if (loggedIn) fetchExpenseList();
   }, [updateExpense]);
 
   return (
