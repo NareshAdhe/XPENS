@@ -6,7 +6,7 @@ import axios from "axios";
 export const AppContext = createContext();
 
 const Context = ({ children }) => {
-  const backendURI = process.env.VITE_REACT_APP_BACKEND_BASE_URL;
+  const backendURI = import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL;
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLogging, setIsLogging] = useState(false);
   const [budgetList, setBudgetList] = useState([]);

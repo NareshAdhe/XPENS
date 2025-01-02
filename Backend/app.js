@@ -27,11 +27,11 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
 app.use("/api/auth", authRouter);
 app.use("/api/incomes", incomeRouter);
 app.use("/api/expenses", expenseRouter);
 
-// Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
