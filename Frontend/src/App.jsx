@@ -53,7 +53,7 @@ const App = () => {
               />
               <Route path="/dashboard/upgrade" element={<Upgrade />} />
               <Route path="/dashboard/profile" element={<Profile />} />
-              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
         </>
