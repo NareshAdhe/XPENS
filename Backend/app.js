@@ -15,7 +15,7 @@ app.use(
   cors({
     origin: [
       "https://xpens-eta.vercel.app",
-      "https://xpens-git-main-nareshs-projects-1c48ee48.vercel.app",
+      "https://https://xpensfrontend-mb39i35vs-nareshs-projects-1c48ee48.vercel.app",
       "http://localhost:5173",
     ],
     credentials: true,
