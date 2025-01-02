@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { AppContext } from "../utils/Context";
 import { Audio } from "react-loader-spinner";
+import { Chart, ArcElement } from "chart.js";
+Chart.register(ArcElement);
 
 const Pie = () => {
   const {

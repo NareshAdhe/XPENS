@@ -76,6 +76,7 @@ const Context = ({ children }) => {
           withCredentials: true,
         });
         if (dailyRes.data.success) {
+          console.log(dailyRes.data);
           setDailyIncome(dailyRes.data.dailyIncomes);
         } else {
           toast.error(dailyRes.data.message, {

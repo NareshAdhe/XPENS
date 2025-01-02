@@ -157,6 +157,7 @@ export const editIncome = async (req, res) => {
 export const dailyIncome = async (req, res) => {
   const { week, month } = req.query;
   const { userId } = req.body;
+  console.log("request accepted");
   try {
     if (!week || !month) {
       return res.json({
@@ -165,6 +166,13 @@ export const dailyIncome = async (req, res) => {
       });
     }
     const incomes = await incomeModel.find({ userId });
+    if (!incomes) {
+      console.log("no incomes found");
+      return res.json({
+        success: true,
+        dailyIncomes: [],
+      });
+    } else console.log("incomes found", incomes);
     const dailyIncomes = Array(12)
       .fill(null)
       .map(() =>
@@ -176,7 +184,7 @@ export const dailyIncome = async (req, res) => {
       let [incomeDate, incomeMonth, incomeYear] = income.date
         .split("-")
         .map(Number);
-      let weekIndex = Math.floor((incomeDate - 6) / 7);
+      let weekIndex = Math.floor((incomeDate - 1) / 7);
       weekIndex = Math.min(weekIndex, 3);
       if (incomeDate <= 28) {
         incomeDate = incomeDate % 7;
@@ -184,6 +192,8 @@ export const dailyIncome = async (req, res) => {
       } else {
         incomeDate = 6;
       }
+      console.log(incomeDate, incomeMonth, incomeYear);
+      console.log(weekIndex, week, Number(month), incomeMonth);
       if (Number(week) === weekIndex && Number(month) === incomeMonth - 1) {
         dailyIncomes[incomeMonth - 1][weekIndex][incomeDate - 1] +=
           income.amount;

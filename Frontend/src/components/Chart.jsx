@@ -1,5 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import {
+  Chart as Charjs,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+Charjs.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
 import { AppContext } from "../utils/Context";
 import { Audio } from "react-loader-spinner";
 
@@ -52,13 +64,13 @@ const Chart = () => {
 
   useEffect(() => {
     if (time === "daily") {
-      fetchExpenseData(week, dailyMonth, handleLoading);
-      fetchIncomeData(week, dailyMonth, handleLoading);
+      if (type === "expense") fetchExpenseData(week, dailyMonth, handleLoading);
+      else fetchIncomeData(week, dailyMonth, handleLoading);
     } else {
-      fetchExpenseData(null, month, handleLoading);
-      fetchIncomeData(null, month, handleLoading);
+      if (type === "expense") fetchExpenseData(null, month, handleLoading);
+      else fetchIncomeData(null, month, handleLoading);
     }
-  }, [week, month, dailyMonth, updateExpense, updateIncome]);
+  }, [type, time, week, month, dailyMonth, updateExpense, updateIncome]);
 
   useEffect(() => {
     const isWeekly = time === "weekly";
@@ -332,7 +344,7 @@ const Chart = () => {
       </div>
       <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px]">
         {loading ? (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="flex h-full w-full items-center justify-center">
             <Audio
               height="50"
               width="50"
