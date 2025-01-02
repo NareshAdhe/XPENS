@@ -32,13 +32,13 @@ const Pie = () => {
   const [loading, setLoading] = useState(false);
 
   const [labels, setLabels] = useState([
+    "Sun",
     "Mon",
     "Tue",
     "Wed",
     "Thu",
     "Fri",
     "Sat",
-    "Sun",
   ]);
 
   const dailyBackgroundColors = [
@@ -140,7 +140,7 @@ const Pie = () => {
 
     const newLabels = isWeekly
       ? ["Week 1", "Week 2", "Week 3", "Week 4"]
-      : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     setData(newData);
     setLabels(newLabels);
     setChartData({

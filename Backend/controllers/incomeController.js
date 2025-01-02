@@ -157,7 +157,7 @@ export const editIncome = async (req, res) => {
 export const dailyIncome = async (req, res) => {
   const { week, month } = req.query;
   const { userId } = req.body;
-  console.log("request accepted");
+
   try {
     if (!week || !month) {
       return res.json({
@@ -165,14 +165,15 @@ export const dailyIncome = async (req, res) => {
         message: "Week and month are required",
       });
     }
+
     const incomes = await incomeModel.find({ userId });
     if (!incomes) {
-      console.log("no incomes found");
       return res.json({
         success: true,
         dailyIncomes: [],
       });
-    } else console.log("incomes found", incomes);
+    }
+
     const dailyIncomes = Array(12)
       .fill(null)
       .map(() =>
@@ -180,25 +181,22 @@ export const dailyIncome = async (req, res) => {
           .fill(null)
           .map(() => Array(7).fill(0))
       );
+
     incomes.forEach((income) => {
       let [incomeDate, incomeMonth, incomeYear] = income.date
         .split("-")
         .map(Number);
-      let weekIndex = Math.floor((incomeDate - 1) / 7);
+
+      const date = new Date(incomeYear, incomeMonth - 1, incomeDate);
+      const dayOfWeek = date.getDay() - 1; // saturday = 0 sunday = 1 ...
+      if (dayOfWeek === -1) dayOfWeek = 6; // for saturday as it is 0
+      let weekIndex = Math.floor(incomeDate - 1 / 7);
       weekIndex = Math.min(weekIndex, 3);
-      if (incomeDate <= 28) {
-        incomeDate = incomeDate % 7;
-        if (incomeDate === 0) incomeDate = 6;
-      } else {
-        incomeDate = 6;
-      }
-      console.log(incomeDate, incomeMonth, incomeYear);
-      console.log(weekIndex, week, Number(month), incomeMonth);
       if (Number(week) === weekIndex && Number(month) === incomeMonth - 1) {
-        dailyIncomes[incomeMonth - 1][weekIndex][incomeDate - 1] +=
-          income.amount;
+        dailyIncomes[incomeMonth - 1][weekIndex][dayOfWeek] += income.amount;
       }
     });
+
     return res.json({
       success: true,
       dailyIncomes,
@@ -226,7 +224,7 @@ export const weeklyIncome = async (req, res) => {
       .fill(null)
       .map(() => Array(4).fill(0));
     incomes.forEach((income) => {
-      const [incomeDate, incomeMonth, incomeYear] = income.date
+      let [incomeDate, incomeMonth, incomeYear] = income.date
         .split("-")
         .map(Number);
       let weekIndex = Math.floor((incomeDate - 1) / 7);

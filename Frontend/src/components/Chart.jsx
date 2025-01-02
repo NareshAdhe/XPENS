@@ -28,13 +28,13 @@ const Chart = () => {
   } = useContext(AppContext);
 
   const [labels, setLabels] = useState([
+    "Sun",
     "Mon",
     "Tue",
     "Wed",
     "Thu",
     "Fri",
     "Sat",
-    "Sun",
   ]);
   const date = new Date();
   let weekIndex = Math.floor((date.getDate() - 1) / 7);
@@ -93,7 +93,7 @@ const Chart = () => {
 
     const newLabels = isWeekly
       ? ["Week 1", "Week 2", "Week 3", "Week 4"]
-      : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     setData(newData);
     setLabels(newLabels);
