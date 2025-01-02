@@ -52,7 +52,7 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full md:p-0 p-4 rounded-md z-10 bg-[#00000060] grid">
+    <div className="fixed top-0 left-0 w-full h-full md:p-0 p-8 rounded-md z-10 bg-[#00000060] grid">
       <motion.div
         className="bg-white place-self-center p-4 w-full max-w-md rounded-lg shadow-md"
         variants={popupVariants}
