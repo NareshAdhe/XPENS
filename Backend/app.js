@@ -16,7 +16,6 @@ app.use(
     credentials: true,
   })
 );
-console.log("CORS origin set to:", process.env.FRONTEND_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
