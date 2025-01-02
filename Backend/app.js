@@ -31,14 +31,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/incomes", incomeRouter);
 app.use("/api/expenses", expenseRouter);
 
-// Fallback for undefined routes
-app.use((req, res, next) => {
-  res.status(404).json({
-    success: false,
-    message: "Route not found",
-  });
-});
-
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
