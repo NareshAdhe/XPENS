@@ -62,7 +62,7 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="fixed top-0 left-0 w-full h-full z-10 bg-[#00000040] grid"
+      className="fixed top-0 left-0 w-full h-full z-10 bg-[#00000040] grid p-8"
     >
       <motion.div
         className="bg-white place-self-center p-4 w-full max-w-md rounded-lg shadow-md"
