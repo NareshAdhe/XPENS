@@ -207,12 +207,32 @@ const Context = ({ children }) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("authToken") && document.cookie) {
-      document.cookie = localStorage.getItem("authToken");
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
+    const verifyToken = async () => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        try {
+          const response = await axios.post(
+            `${backendURI}/api/auth/verify-token`,
+            {},
+            {
+              headers: { Authorization: `Bearer ${token}` },
+              withCredentials: true,
+            }
+          );
+
+          if (response.data.success) {
+            setLoggedIn(true);
+          } else {
+            localStorage.removeItem("authToken");
+          }
+        } catch (error) {
+          console.error("Token verification failed:", error);
+          localStorage.removeItem("authToken");
+        }
+      }
+    };
+
+    verifyToken();
   }, []);
 
   useEffect(() => {

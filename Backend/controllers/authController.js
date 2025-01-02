@@ -913,3 +913,19 @@ export const updatePassword = async (req, res) => {
     });
   }
 };
+
+export const verifyToken = async (req, res) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.json({ success: false, message: "Token is missing" });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.json({ success: false, message: "Invalid token" });
+    }
+    res.json({ success: true, user });
+  });
+};

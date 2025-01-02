@@ -11,6 +11,7 @@ import {
   updatePassword,
   verifyOtp,
   verifyResetOtp,
+  verifyToken,
 } from "../controllers/authController.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import resetMiddleware from "../middlewares/resetMiddleware.js";
@@ -28,5 +29,5 @@ authRouter.post("/checkMail", checkMail);
 authRouter.post("/reset", resetMiddleware, changePassword);
 authRouter.get("/user", authMiddleware, getUser);
 authRouter.post("/updatePassword", authMiddleware, updatePassword);
-
+authRouter.post("/verify-token", verifyToken);
 export default authRouter;
