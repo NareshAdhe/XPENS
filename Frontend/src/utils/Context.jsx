@@ -28,6 +28,7 @@ const Context = ({ children }) => {
   const [dailyCategoryIncome, setDailyCategoryIncome] = useState([]);
   const [weeklyCategoryExpense, setWeeklyCategoryExpense] = useState([]);
   const [weeklyCategoryIncome, setWeeklyCategoryIncome] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const navigate = useNavigate();
 
   const fetchExpenseData = async (week, month) => {
@@ -209,6 +210,7 @@ const Context = ({ children }) => {
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem("authToken");
+      setIsRefreshing(true);
       if (token) {
         try {
           const response = await axios.post(
@@ -222,10 +224,13 @@ const Context = ({ children }) => {
 
           if (response.data.success) {
             setLoggedIn(true);
+            setIsRefreshing(false);
           } else {
             localStorage.removeItem("authToken");
+            setIsRefreshing(false);
           }
         } catch (error) {
+          setIsRefreshing(false);
           console.error("Token verification failed:", error);
           localStorage.removeItem("authToken");
         }
@@ -293,6 +298,8 @@ const Context = ({ children }) => {
         weeklyCategoryIncome,
         fetchCategoryExpenseData,
         fetchCategoryIncomeData,
+        isRefreshing,
+        setIsRefreshing,
       }}
     >
       {children}
