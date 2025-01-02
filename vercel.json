@@ -2,12 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "Frontend/package.json",
-      "use": "@vercel/react"
+      "src": "Backend/app.js",
+      "use": "@vercel/node"
     },
     {
-      "src": "Backend/server.js",
-      "use": "@vercel/node"
+      "src": "Frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "Frontend/build"
+      }
     }
   ],
   "routes": [
@@ -17,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/Frontend/$1"
+      "dest": "/Frontend/build/$1"
     }
   ]
 }
