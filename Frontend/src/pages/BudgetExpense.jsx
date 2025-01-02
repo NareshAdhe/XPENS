@@ -6,7 +6,7 @@ import BudgetItem from "../components/BudgetItem";
 import axios from "axios";
 import AddExpense from "../components/AddExpense";
 import AddBudget from "../pages/AddBudget";
-import BudgetExpenses from "../components/budgetExpenses";
+import BudgetExpenses from "../components/BudgetExpenses";
 import { ShimmerContentBlock } from "react-shimmer-effects";
 import Popup from "../components/Popup";
 import ExpneseEdit from "../components/ExpneseEdit";
