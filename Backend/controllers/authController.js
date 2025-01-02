@@ -178,7 +178,8 @@ export const login = async (req, res) => {
       expiresIn: "5m",
     });
     res.cookie("verifyToken", token, {
-      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     // {
     //   httpOnly: process.env.NODE_ENV === "production",
