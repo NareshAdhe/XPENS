@@ -121,11 +121,24 @@ export const register = async (req, res) => {
   </div>
 </body>
 </html>`;
+
+    const textContent = `Hello User,
+
+Your one-time password (OTP) for completing your action is: ${otp}
+
+This OTP is valid for 1 minute. Please do not share it with anyone.
+
+If you did not request this, please ignore this email or contact support.
+
+Thank you for using our service!
+Xpens`;
+
     const mailOptions = {
       from: `"XPENS" ${process.env.SENDER_MAIL}`,
       to: user.email,
       subject: "Your One-Time Password (OTP) for Verification",
       html: htmlContent,
+      text: textContent,
     };
 
     await transporter.sendMail(mailOptions);
@@ -256,11 +269,24 @@ export const login = async (req, res) => {
   </div>
 </body>
 </html>`;
+
+    const textContent = `Hello User,
+
+Your one-time password (OTP) for completing your action is: ${otp}
+
+This OTP is valid for 1 minute. Please do not share it with anyone.
+
+If you did not request this, please ignore this email or contact support.
+
+Thank you for using our service!
+Xpens`;
+
     const mailOptions = {
       from: `"XPENS" ${process.env.SENDER_MAIL}`,
       to: user.email,
       subject: "Your One-Time Password (OTP) for Verification",
       html: htmlContent,
+      text: textContent,
     };
 
     await transporter.sendMail(mailOptions);
@@ -401,11 +427,22 @@ export const verifyOtp = async (req, res) => {
 </html>
 `;
 
+    const textContent = `Hello ${userName},
+
+We're excited to have you on board! Thank you for logging in and being part of our community.
+
+If you have any questions, feel free to reply to this email. We're here to help!
+
+Best regards,
+The XPENS Team
+© 2024 XPENS  . All rights reserved.`;
+
     const mailOptions = {
       from: `"XPENS" ${process.env.SENDER_MAIL}`,
       to: user.email,
       subject: `${userName} 😊 Welcome to XPENS – We're Excited to Have You!`,
       html: htmlContent,
+      text: textContent,
     };
 
     await transporter.sendMail(mailOptions);
@@ -625,11 +662,24 @@ export const sendResetOtp = async (req, res) => {
   </div>
 </body>
 </html>`;
+
+    const textContent = `Hello User,
+
+Your one-time password (OTP) for completing your action is: ${otp}
+
+This OTP is valid for 1 minute. Please do not share it with anyone.
+
+If you did not request this, please ignore this email or contact support.
+
+Thank you for using our service!
+Xpens`;
+
     const mailOptions = {
       from: process.env.SENDER_MAIL,
       to: user.email,
       subject: "Your One-Time Password (OTP) for Verification",
       html: htmlContent,
+      text: textContent,
     };
 
     await transporter.sendMail(mailOptions);
