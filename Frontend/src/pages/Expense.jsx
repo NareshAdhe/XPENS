@@ -42,10 +42,11 @@ const Expense = () => {
   };
 
   const buttonVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.4, ease: "easeInOut", delay: 0.4 },
+      x: 0,
+      transition: { duration: 0.4, ease: "easeInOut", delay: 0.5 },
     },
     hover: {
       scale: 1.05,
