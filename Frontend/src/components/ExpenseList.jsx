@@ -88,7 +88,7 @@ const ExpenseList = ({ category, startDate, endDate }) => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.75 }}
           className="text-center text-gray-500 text-lg"
         >
           No expenses recorded yet. Start adding your expenses!
