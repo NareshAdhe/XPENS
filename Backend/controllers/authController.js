@@ -294,7 +294,6 @@ export const verifyOtp = async (req, res) => {
         message: "OTP has expired",
       });
     }
-    console.log(user.loginOtp);
     const isOtpValid = await bcrypt.compare(otp2, user.loginOtp);
     if (!isOtpValid) {
       return res.json({
