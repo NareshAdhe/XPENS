@@ -52,7 +52,7 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
   };
 
   const buttonVariants = {
-    hover: { scale: 1.05, transition: { duration: 0.2 } },
+    hover: { scale: 1.05, transition: { duration: 0.1 } },
     initial: { scale: 1 },
   };
 

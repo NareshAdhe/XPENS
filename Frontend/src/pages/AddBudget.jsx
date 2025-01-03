@@ -76,7 +76,6 @@ const AddBudget = ({
       const response = await axios.post(url, dataToSubmit, {
         withCredentials: true,
       });
-      setLoading(false);
       const { success, message } = response.data;
       if (success) {
         setUpdateBudget((prev) => !prev);
@@ -90,19 +89,32 @@ const AddBudget = ({
         toast.error(message, { autoClose: 5000 });
       }
     } catch (error) {
-      setLoading(false);
       toast.error(error.message, { autoClose: 2000 });
     }
+    setLoading(false);
+  };
+  const popupVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.15, ease: "easeInOut" },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.15, ease: "easeInOut" },
+    },
   };
 
   return (
     <motion.div className="fixed top-0 left-0 w-full h-full md:p-0 p-4 rounded-md z-10 grid bg-[#00000060]">
       <motion.form
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.15 }}
+        varients={popupVariants}
+        initial="hidden"
+        animate="visible"
         onSubmit={handleSubmit}
-        exit={{ scale: 0.8, opacity: 0 }}
+        exit="exit"
         className="px-6 py-4 bg-white rounded-md place-self-center md:w-1/3 w-full"
       >
         <div className="flex items-center justify-between mb-5">

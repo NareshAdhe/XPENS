@@ -12,7 +12,7 @@ const AddExpensePopup = ({ handleShowPopup, handleShowAddExpense }) => {
   };
 
   const popupVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -20,7 +20,7 @@ const AddExpensePopup = ({ handleShowPopup, handleShowAddExpense }) => {
     },
     exit: {
       opacity: 0,
-      scale: 0.9,
+      scale: 0.8,
       transition: { duration: 0.15, ease: "easeInOut" },
     },
   };
