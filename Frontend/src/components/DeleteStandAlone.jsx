@@ -75,7 +75,7 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
         <div className="mt-8 flex justify-end gap-4">
           <motion.button
             onClick={() => handleStandAloneDelete(false)}
-            className="w-20 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
+            className="w-24 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -84,7 +84,7 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
           </motion.button>
           <motion.button
             onClick={handleDeleteExpense}
-            className="w-20 flex items-center justify-center py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
+            className="w-24 flex items-center justify-center py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
