@@ -88,7 +88,6 @@ export const getBudgetExpenses = async (req, res) => {
       });
     }
     const expenses = await expenseModel.find({ incomeId });
-    console.log(expenses);
     return res.json({
       success: true,
       expenses,
@@ -317,7 +316,6 @@ export const editStandAlone = async (req, res) => {
         message: "Expense not found",
       });
     }
-    console.log("prev expense: ", user.standAloneExpense);
     user.standAloneExpense = user.standAloneExpense - expense.amount;
     const updatedExpense = await expenseModel.findByIdAndUpdate(
       expenseId,
