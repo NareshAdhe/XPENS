@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Chart from "../components/Chart";
 import Pie from "../components/Pie";
@@ -96,18 +97,30 @@ const Dashboard = () => {
           className="flex flex-col gap-5 shadow-lg hover:shadow-xl border-2 border-gray-400 rounded-lg px-4 py-3 md:col-span-2 lg:col-span-1"
         >
           <h2 className="text-2xl font-semibold capitalize">Recent Incomes</h2>
-          {budgetList.map((budget, index) =>
-            index <= 2 ? (
-              <motion.div
-                variants={childrenVariants}
-                initial="hidden"
-                animate="visible"
-                key={index}
+          {budgetList.length === 0 ? (
+            <div>
+              <h1 className="text-lg text-gray-500">No Incomes Recorded!</h1>
+              <Link
+                to={"/dashboard/incomes"}
+                className="inline-block my-2 px-4 sm:px-2 py-2 bg-[#4842d2] text-white text-lg tracking-wide font-sans rounded-md hover:bg-blue-800"
               >
-                <BudgetItem budget={budget} />
-              </motion.div>
-            ) : (
-              ""
+                Add Incomes
+              </Link>
+            </div>
+          ) : (
+            budgetList.map((budget, index) =>
+              index <= 2 ? (
+                <motion.div
+                  variants={childrenVariants}
+                  initial="hidden"
+                  animate="visible"
+                  key={index}
+                >
+                  <BudgetItem budget={budget} />
+                </motion.div>
+              ) : (
+                ""
+              )
             )
           )}
         </motion.div>

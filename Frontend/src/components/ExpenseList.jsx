@@ -89,10 +89,9 @@ const ExpenseList = ({ category, startDate, endDate }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="text-center text-gray-500"
+          className="text-center text-gray-500 text-lg"
         >
-          No expenses recorded yet. Start adding your expenses in your income
-          section!
+          No expenses recorded yet. Start adding your expenses!
         </motion.p>
       )}
     </div>

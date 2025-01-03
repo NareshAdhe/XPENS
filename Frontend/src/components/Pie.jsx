@@ -77,7 +77,7 @@ const Pie = () => {
     "rgba(75, 192, 192, 1)",
     "rgba(153, 102, 255, 1)",
     "rgba(255, 159, 64, 1)",
-    "rgba(150, 159, 64, 1)",
+    "rgba(210, 80, 255, 1)",
     "rgba(210, 255, 80, 1)",
     "rgba(80, 210, 255, 1)",
     "rgba(80, 255, 10, 1)",
@@ -367,7 +367,7 @@ const Pie = () => {
         required
         value={expenseCategory}
         onChange={(e) => setExpenseCategory(e.target.value)}
-        className="cursor-pointer mt-1.5 w-full rounded-md py-2 px-4 text-gray-700 border bg-transparent border-gray-500 sm:text-sm outline-none"
+        className="cursor-pointer mt-1.5 w-full p-2 border sm:text-sm border-gray-300 rounded bg-gray-100 text-gray-700 outline-none"
       >
         <option value="housing" className="bg-red-50">
           Housing (Rent/Mortgage)
@@ -405,7 +405,7 @@ const Pie = () => {
         required
         value={incomeCategory}
         onChange={(e) => setIncomeCategory(e.target.value)}
-        className="cursor-pointer mt-1.5 w-full rounded-md py-2 px-4 text-gray-700 border bg-transparent border-gray-500 sm:text-sm outline-none"
+        className="cursor-pointer mt-1.5 w-full p-2 border sm:text-sm border-gray-300 rounded bg-gray-100 text-gray-700 outline-none"
       >
         <option value="salary" className="bg-green-50">
           Salary

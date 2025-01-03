@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { AppContext } from "../utils/Context";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
 
 const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
   const { backendURI, setUpdateExpense } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
 
   const popupVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -22,11 +24,12 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
   };
 
   const buttonVariants = {
-    hover: { scale: 1.05, transition: { duration: 0.3 } },
+    hover: { scale: 1.05, transition: { duration: 0.1 } },
     initial: { scale: 1 },
   };
 
   const handleDeleteExpense = async () => {
+    setLoading(true);
     try {
       const url = `${backendURI}/api/expenses/deleteStandAlone/${expense._id}`;
       const response = await axios.delete(url, {
@@ -49,6 +52,7 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
         autoClose: 2000,
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -71,7 +75,7 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
         <div className="mt-8 flex justify-end gap-4">
           <motion.button
             onClick={() => handleStandAloneDelete(false)}
-            className="px-4 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
+            className="w-20 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -80,12 +84,23 @@ const DeleteStandAlone = ({ expense, handleStandAloneDelete }) => {
           </motion.button>
           <motion.button
             onClick={handleDeleteExpense}
-            className="px-4 py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
+            className="w-20 flex items-center justify-center py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
           >
-            Delete
+            {loading ? (
+              <TailSpin
+                visible={true}
+                height="25"
+                width="25"
+                color="#000"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+              />
+            ) : (
+              "Delete"
+            )}
           </motion.button>
         </div>
       </motion.div>

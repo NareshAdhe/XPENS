@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../utils/Context";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { TailSpin } from "react-loader-spinner";
 
 const Popup = ({
   incomeId,
@@ -18,6 +19,7 @@ const Popup = ({
     navigate,
   } = useContext(AppContext);
   const deletBudget = popupTitle === "Budget";
+  const [loading, setLoading] = useState(false);
 
   const handleCancelClick = () => {
     if (deletBudget) {
@@ -28,6 +30,7 @@ const Popup = ({
   };
 
   const handleExpenseDelete = async () => {
+    setLoading(true);
     try {
       const url = `${backendURI}/api/expenses/deleteBudgetExpense/${incomeId}/${expenseId}`;
       const response = await axios.delete(url, {
@@ -50,9 +53,11 @@ const Popup = ({
         autoClose: 2000,
       });
     }
+    setLoading(false);
   };
 
   const handleBudgetDelete = async () => {
+    setLoading(true);
     try {
       const url = `${backendURI}/api/incomes/deleteIncome/${incomeId}`;
       const response = await axios.delete(url, {
@@ -76,6 +81,7 @@ const Popup = ({
         autoClose: 2000,
       });
     }
+    setLoading(false);
   };
 
   const popupVariants = {
@@ -126,12 +132,23 @@ const Popup = ({
           </motion.button>
           <motion.button
             onClick={deletBudget ? handleBudgetDelete : handleExpenseDelete}
-            className="px-4 py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
+            className="w-20 flex items-center justify-center py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
           >
-            Delete
+            {loading ? (
+              <TailSpin
+                visible={true}
+                height="24"
+                width="24"
+                color="#000"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+              />
+            ) : (
+              "Delete"
+            )}
           </motion.button>
         </div>
       </motion.div>

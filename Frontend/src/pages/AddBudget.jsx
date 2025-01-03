@@ -138,7 +138,7 @@ const AddBudget = ({
         <div
           className={`${
             pickerVisible ? "absolute" : "hidden"
-          } top-50 right-50 transform z-20 h-[50%] w-[30%]`}
+          } top-50 left-10 md:left-1/2 transform z-20 h-[45%] w-[85%] md:w-[35%]`}
         >
           <RxCross1
             className="cursor-pointer font-bold text-lg absolute z-30 right-2 top-1"

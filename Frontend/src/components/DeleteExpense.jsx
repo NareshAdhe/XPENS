@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../utils/Context";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { TailSpin } from "react-loader-spinner";
 
 const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
   const { backendURI, setUpdateExpense, setUpdateBudget } =
     useContext(AppContext);
+
+  const [loading, setLoading] = useState(false);
 
   const handleCancel = () => {
     toggleDeleteExpense();
   };
 
   const handleDelete = async () => {
+    setLoading(true);
     try {
       const url = `${backendURI}/api/expenses/deleteExpense/${expenseId}`;
       const response = await axios.delete(url, {
@@ -35,6 +39,7 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
         autoClose: 2000,
       });
     }
+    setLoading(false);
   };
 
   const popupVariants = {
@@ -82,7 +87,7 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
         <div className="mt-8 flex justify-end gap-4">
           <motion.button
             onClick={handleCancel}
-            className="px-4 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
+            className="w-20 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -91,12 +96,23 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
           </motion.button>
           <motion.button
             onClick={handleDelete}
-            className="px-4 py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
+            className="w-20 flex items-center justify-center py-2 bg-red-200 border border-red-700 rounded-md hover:bg-red-300"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
           >
-            Delete
+            {loading ? (
+              <TailSpin
+                visible={true}
+                height="24"
+                width="24"
+                color="#000"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+              />
+            ) : (
+              "Delete"
+            )}
           </motion.button>
         </div>
       </motion.div>
