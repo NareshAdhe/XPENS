@@ -94,10 +94,9 @@ const AddBudget = ({
     setLoading(false);
   };
   const popupVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
       transition: { duration: 0.15, ease: "easeInOut" },
     },
     exit: {
@@ -108,13 +107,13 @@ const AddBudget = ({
   };
 
   return (
-    <motion.div className="fixed top-0 left-0 w-full h-full md:p-0 p-4 rounded-md z-10 grid bg-[#00000060]">
+    <div className="fixed top-0 left-0 w-full h-full md:p-0 p-4 rounded-md z-10 grid bg-[#00000060]">
       <motion.form
-        varients={popupVariants}
+        variants={popupVariants}
         initial="hidden"
         animate="visible"
-        onSubmit={handleSubmit}
         exit="exit"
+        onSubmit={handleSubmit}
         className="px-6 py-4 bg-white rounded-md place-self-center md:w-1/3 w-full"
       >
         <div className="flex items-center justify-between mb-5">
@@ -260,7 +259,7 @@ const AddBudget = ({
           )}
         </button>
       </motion.form>
-    </motion.div>
+    </div>
   );
 };
 

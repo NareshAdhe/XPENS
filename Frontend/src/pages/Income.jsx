@@ -32,18 +32,6 @@ const Income = () => {
     visible: { opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } },
   };
 
-  const addBudgetVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeInOut",
-        delay: 0.8,
-      },
-    },
-  };
-
   return (
     <motion.div
       variants={containerVariants}
@@ -62,12 +50,7 @@ const Income = () => {
         handleBudgetStartDate={handleBudgetStartDate}
         handleBudgetEndDate={handleBudgetEndDate}
       />
-      <motion.div
-        variants={addBudgetVariants}
-        initial="hidden"
-        animate="visible"
-        className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 items-stretch"
-      >
+      <motion.div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 items-stretch">
         <CreateBudget onClick={handleClick} />
         <AnimatePresence>
           {showAddBudget && <AddBudget onClick={handleClick} />}
