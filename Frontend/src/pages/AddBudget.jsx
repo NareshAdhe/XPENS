@@ -100,13 +100,15 @@ const AddBudget = ({
       <motion.form
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.15 }}
         onSubmit={handleSubmit}
         exit={{ scale: 0.8, opacity: 0 }}
         className="px-6 py-4 bg-white rounded-md place-self-center md:w-1/3 w-full"
       >
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl  text-black">Add New Budget</h2>
+          <h2 className="text-xl  text-black">
+            {isBudgetEditing ? "Edit Budget" : "Add Budget"}
+          </h2>
           <RxCross1
             className="cursor-pointer font-bold text-xl"
             onClick={isBudgetEditing ? handleBudgetEditClick : onClick}

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import Box from "../components/Box";
 import { AppContext } from "../utils/Context";
 import { CgProfile } from "react-icons/cg";
@@ -6,6 +6,11 @@ import ChangePassword from "../components/ChangePassword";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { TbPigMoney } from "react-icons/tb";
+import { RiMoneyRupeeCircleLine } from "react-icons/ri";
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { CiMoneyBill } from "react-icons/ci";
+import { TailSpin } from "react-loader-spinner";
 
 const Profile = () => {
   const {
@@ -19,6 +24,8 @@ const Profile = () => {
     setLoggedIn,
     navigate,
   } = useContext(AppContext);
+
+  const [loading, setLoading] = useState(false);
 
   const getValues = useCallback(() => {
     let totalIncome = 0;
@@ -42,6 +49,7 @@ const Profile = () => {
   }, [updateExpense]);
 
   const handleLogout = async () => {
+    setLoading(true);
     try {
       const url = backendURI + "/api/auth/logout";
       const response = await axios.post(
@@ -70,6 +78,7 @@ const Profile = () => {
         autoClose: 2000,
       });
     }
+    setLoading(false);
   };
   const standAloneExpense = getStandAloneExpense();
   const { totalIncome, totalExpense, totalBalance } = getValues();
@@ -94,7 +103,7 @@ const Profile = () => {
   };
 
   const buttonVariants = {
-    hover: { scale: 1.05, transition: { duration: 0.1 } },
+    hover: { scale: 1.02, transition: { duration: 0.1 } },
     initial: { scale: 1 },
   };
 
@@ -124,12 +133,23 @@ const Profile = () => {
           <div className="mt-6">
             <motion.button
               onClick={handleLogout}
-              className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-all"
+              className="w-full bg-red-600 text-white py-2 px-4 rounded-md flex items-center justify-center"
               variants={buttonVariants}
               initial="initial"
               whileHover="hover"
             >
-              Logout
+              {loading ? (
+                <TailSpin
+                  visible={true}
+                  height="24"
+                  width="24"
+                  color="#fff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                />
+              ) : (
+                "Logout"
+              )}
             </motion.button>
           </div>
         </motion.div>
@@ -140,6 +160,7 @@ const Profile = () => {
               bg="bg-gradient-to-r from-green-400 to-green-600"
               text="Total Income"
               amount={totalIncome}
+              icon={<TbPigMoney className="text-2xl text-green-600" />}
             />
           </motion.div>
           <motion.div variants={boxVariants} initial="hidden" animate="visible">
@@ -147,6 +168,9 @@ const Profile = () => {
               bg="bg-gradient-to-r from-red-400 to-red-600"
               text="Income Expense"
               amount={totalExpense}
+              icon={
+                <RiMoneyRupeeCircleLine className="text-2xl text-red-600" />
+              }
             />
           </motion.div>
           <motion.div variants={boxVariants} initial="hidden" animate="visible">
@@ -154,13 +178,17 @@ const Profile = () => {
               bg="bg-gradient-to-r from-blue-400 to-blue-600"
               text="Current Balance"
               amount={totalBalance}
+              icon={
+                <MdOutlineAccountBalanceWallet className="text-2xl text-blue-600" />
+              }
             />
           </motion.div>
           <motion.div variants={boxVariants} initial="hidden" animate="visible">
             <Box
-              bg="bg-gradient-to-r from-green-400 to-green-600"
+              bg="bg-[#4842d2]"
               text="StandAlone Expense"
               amount={standAloneExpense}
+              icon={<CiMoneyBill className="text-2xl text-[#4842d2]" />}
             />
           </motion.div>
         </div>

@@ -13,6 +13,7 @@ import ExpneseEdit from "../components/ExpneseEdit";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
+import { AnimatePresence } from "framer-motion";
 
 const BudgetExpense = () => {
   const { id } = useParams();
@@ -100,28 +101,36 @@ const BudgetExpense = () => {
         </div>
       </div>
 
-      {popupData && id && (
-        <Popup
-          incomeId={id}
-          expenseId={popupData.expenseId}
-          popupTitle="Expense"
-        />
-      )}
-      {expenseEditData && id && <ExpneseEdit />}
-      {isBudgetEditing && id && (
-        <AddBudget
-          budget={budget}
-          isBudgetEditing={isBudgetEditing}
-          handleBudgetEditClick={handleBudgetEditClick}
-        />
-      )}
-      {isBudgetDeleting && id && (
-        <Popup
-          popupTitle="Budget"
-          incomeId={id}
-          handleBudgetDeleteClick={handleBudgetDeleteClick}
-        />
-      )}
+      <AnimatePresence>
+        {popupData && id && (
+          <Popup
+            incomeId={id}
+            expenseId={popupData.expenseId}
+            popupTitle="Expense"
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {expenseEditData && id && <ExpneseEdit />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isBudgetEditing && id && (
+          <AddBudget
+            budget={budget}
+            isBudgetEditing={isBudgetEditing}
+            handleBudgetEditClick={handleBudgetEditClick}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isBudgetDeleting && id && (
+          <Popup
+            popupTitle="Budget"
+            incomeId={id}
+            handleBudgetDeleteClick={handleBudgetDeleteClick}
+          />
+        )}
+      </AnimatePresence>
       {budget._id ? (
         <BudgetExpenses incomeId={budget._id} />
       ) : (

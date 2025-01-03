@@ -36,25 +36,29 @@ const BudgetItem = ({ budget, styles = "" }) => {
                 />
               </span>
               <div className="w-full flex items-center justify-between md:w-fit md:flex-col md:items-start">
-                <h3 className="text-lg lg:text-xl">{budget.title}</h3>
-                <h4 className="text-sm lg:text-lg text-gray-500">
+                <h3 className="2xs:text-lg lg:text-xl 3xs:text-[12px] text-left">
+                  {budget.title}
+                </h3>
+                <h4 className="text-md lg:text-lg text-gray-500 text-right 3xs:text-sm">
                   {budget.category}
                 </h4>
               </div>
             </div>
-            <div className="right flex items-center justify-between w-full lg:flex-col lg:items-end py-2 text-[#4842c2]">
-              <h2 className="text-md sm:text-xl">₹{budget.amount}</h2>
-              <p className="text-gray-800 lg:text-sm text-[12px]">
+            <div className="flex gap-1 items-center justify-between w-full lg:flex-col lg:items-end py-2 text-[#4842c2]">
+              <h2 className="2xs:text-lg sm:text-xl 3xs:text-[12px] text-left">
+                ₹{budget.amount}
+              </h2>
+              <p className="text-gray-800 lg:text-sm 2xs:text-[12px] 3xs:text-[10px] text-right">
                 {budget.date} | {budget.time}
               </p>
             </div>
           </div>
           <div className="w-full">
-            <div className="flex mt-4 mb-1 items-center justify-between">
-              <h1 className="text-sm md:text-xl text-gray-800">
+            <div className="flex mt-4 mb-1 items-center justify-between gap-2">
+              <h1 className="2xs:text-sm md:text-xl text-gray-800 3xs:text-[12px]">
                 ₹{budget.spent} Spent
               </h1>
-              <h1 className="text-sm md:text-lg text-gray-800">
+              <h1 className="2xs:text-sm md:text-lg text-gray-800 3xs:text-[12px]">
                 ₹{budget.amount - budget.spent} Rem
               </h1>
             </div>

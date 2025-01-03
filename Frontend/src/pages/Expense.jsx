@@ -47,6 +47,14 @@ const Expense = () => {
       opacity: 1,
       transition: { duration: 0.4, ease: "easeInOut", delay: 0.4 },
     },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.1 },
+    },
+    tap: {
+      scale: 1,
+      transition: { duration: 0.1 },
+    },
   };
 
   return (
@@ -96,8 +104,11 @@ const Expense = () => {
           <Link
             onClick={() => handleShowPopup(true)}
             className="px-4 sm:px-2 py-2 bg-[#4842d2] text-white text-lg tracking-wide font-sans rounded-md hover:bg-blue-800"
-            initial="initial"
+            variants={buttonVariants}
+            initial="hidden"
+            animate="visible"
             whileHover="hover"
+            whileTap="tap"
           >
             Add Expenses
           </Link>

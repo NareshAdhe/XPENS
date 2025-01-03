@@ -67,7 +67,7 @@ const Dashboard = () => {
         initial={{ opacity: 0, y: "-100%" }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3, ease: "easeInOut" }}
-        className="mb-8 text-xl md:text-3xl"
+        className="mb-8 text-xl md:text-3xl font-semibold"
       >
         Hello {user.name}😊 Welcome To{" "}
         <span className="text-[#4842d2]">XPENS</span>

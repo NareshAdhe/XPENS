@@ -86,24 +86,17 @@ const ExpenseItem = ({ expense, incomeId, budgetExpenseEditing = true }) => {
           {expense.date} | {expense.time}
         </p>
       </div>
-      {/* popup */}
-      {showDeleteExpense && (
-        <DeleteExpense
-          expenseId={expense._id}
-          toggleDeleteExpense={toggleDeleteExpense}
-        />
-      )}
-      {showDeleteExpense && (
-        <DeleteExpense
-          expenseId={expense._id}
-          toggleDeleteExpense={toggleDeleteExpense}
-        />
-      )}
-      {/* amount */}
+      <AnimatePresence>
+        {showDeleteExpense && (
+          <DeleteExpense
+            expenseId={expense._id}
+            toggleDeleteExpense={toggleDeleteExpense}
+          />
+        )}
+      </AnimatePresence>
       <p className="text-base sm:text-lg font-semibold text-red-600 justify-self-start">
         ₹{expense.amount.toLocaleString()}
       </p>
-      {/* buttons */}
       <div className="flex gap-2 items-center justify-self-start xs:justify-self-end">
         <button
           onClick={handleDelete}

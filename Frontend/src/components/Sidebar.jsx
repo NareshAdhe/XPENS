@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
-import { toast } from "react-toastify";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { TbPigMoney } from "react-icons/tb";
 import { AppContext } from "../utils/Context";
-import { TbLogout } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { delay, motion } from "framer-motion";
 

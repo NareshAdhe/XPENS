@@ -42,12 +42,12 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.3, ease: "easeInOut" },
+      transition: { duration: 0.15, ease: "easeInOut" },
     },
     exit: {
       opacity: 0,
       scale: 0.8,
-      transition: { duration: 0.2, ease: "easeInOut" },
+      transition: { duration: 0.15, ease: "easeInOut" },
     },
   };
 
@@ -79,7 +79,7 @@ const DeleteExpense = ({ expenseId, toggleDeleteExpense }) => {
           undone, and the expense record will be permanently removed from your
           account.
         </p>
-        <div className="mt-8 flex justify-end gap-8">
+        <div className="mt-8 flex justify-end gap-4">
           <motion.button
             onClick={handleCancel}
             className="px-4 py-2 bg-gray-200 border border-gray-700 rounded-md hover:bg-gray-300"
