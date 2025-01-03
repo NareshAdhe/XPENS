@@ -46,7 +46,7 @@ const Expense = () => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.2, ease: "easeInOut", delay: 0.45 },
+      transition: { duration: 0.3, ease: "easeInOut", delay: 0.45 },
     },
     hover: {
       scale: 1.05,

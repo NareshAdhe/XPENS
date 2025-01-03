@@ -34,11 +34,11 @@ const AddExpensePopup = ({ handleShowPopup, handleShowAddExpense }) => {
   return (
     <motion.div className="fixed top-0 left-0 w-full h-full md:p-0 p-8 rounded-md z-10 bg-[#00000060] grid">
       <motion.div
-        exit="exit"
         className="relative bg-white place-self-center p-4 w-full max-w-md rounded-lg shadow-md"
         variants={popupVariants}
         initial="hidden"
         animate="visible"
+        exit="exit"
       >
         <RxCross1
           className="right-4 top-4 absolute cursor-pointer font-bold text-xl"
