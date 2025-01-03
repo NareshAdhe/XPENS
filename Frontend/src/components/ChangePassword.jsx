@@ -4,6 +4,7 @@ import { TailSpin } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { AppContext } from "../utils/Context";
+import { motion } from "framer-motion";
 
 const ChangePassword = () => {
   const [passwordUpdate, setPasswordUpdate] = useState({
@@ -56,8 +57,23 @@ const ChangePassword = () => {
     }
   };
 
+  const changePasswordVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeInOut", delay: 0.4 },
+    },
+  };
+
   return (
-    <div className="bg-white px-4 py-2 rounded-lg shadow-sm mt-8 border-2 border-gray-300">
+    <motion.div
+      variants={changePasswordVariants}
+      initial="hidden"
+      animate="visible"
+      className="bg-white px-4 py-2 rounded-lg shadow-sm mt-8 border-2 border-gray-300"
+    >
       <h2 className="text-lg xs:text-xl font-bold text-gray-800 mb-4">
         Change Password
       </h2>
@@ -122,7 +138,7 @@ const ChangePassword = () => {
           "Update"
         )}
       </button>
-    </div>
+    </motion.div>
   );
 };
 

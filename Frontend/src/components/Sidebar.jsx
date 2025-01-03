@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { TbPigMoney } from "react-icons/tb";
-import { AppContext } from "../utils/Context";
 import { CgProfile } from "react-icons/cg";
 import { delay, motion } from "framer-motion";
 
@@ -31,9 +30,6 @@ const Sidebar = () => {
     },
   ];
 
-  const { backendURI, setLoggedIn, navigate, setIsLogging } =
-    useContext(AppContext);
-
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -46,7 +42,7 @@ const Sidebar = () => {
         duration: 0.5,
         ease: "easeInOut",
         staggerChildren: 0.3,
-        delay: 0.5,
+        delay: 0.2,
       },
     },
   };

@@ -32,8 +32,8 @@ const Context = ({ children }) => {
   const navigate = useNavigate();
 
   const fetchExpenseData = async (week, month, handleLoading) => {
-    handleLoading(true);
     try {
+      handleLoading(true);
       if (week !== null) {
         const dailyUrl = `${backendURI}/api/expenses/dailyExpense?week=${week}&month=${month}`;
         const dailyRes = await axios.get(dailyUrl, {
@@ -59,17 +59,17 @@ const Context = ({ children }) => {
           });
         }
       }
+      handleLoading(false);
     } catch (error) {
       toast.error(error.message, {
         autoClose: 2000,
       });
     }
-    handleLoading(false);
   };
 
   const fetchIncomeData = async (week, month, handleLoading) => {
-    handleLoading(true);
     try {
+      handleLoading(true);
       if (week !== null) {
         const dailyUrl = `${backendURI}/api/incomes/dailyIncome?week=${week}&month=${month}`;
         const dailyRes = await axios.get(dailyUrl, {
@@ -96,12 +96,12 @@ const Context = ({ children }) => {
           });
         }
       }
+      handleLoading(false);
     } catch (error) {
       toast.error(error.message, {
         autoClose: 2000,
       });
     }
-    handleLoading(false);
   };
 
   const fetchCategoryExpenseData = async (
@@ -110,8 +110,8 @@ const Context = ({ children }) => {
     category,
     handleLoading
   ) => {
-    handleLoading(true);
     try {
+      handleLoading(true);
       if (week !== null) {
         const dailyUrl = `${backendURI}/api/expenses/dailyCategoryExpense?week=${week}&month=${month}&category=${category}`;
         const dailyRes = await axios.get(dailyUrl, {
@@ -137,12 +137,12 @@ const Context = ({ children }) => {
           });
         }
       }
+      handleLoading(false);
     } catch (error) {
       toast.error(error.message, {
         autoClose: 2000,
       });
     }
-    handleLoading(false);
   };
 
   const fetchCategoryIncomeData = async (
@@ -151,8 +151,8 @@ const Context = ({ children }) => {
     category,
     handleLoading
   ) => {
-    handleLoading(true);
     try {
+      handleLoading(true);
       if (week !== null) {
         const dailyUrl = `${backendURI}/api/incomes/dailyCategoryIncome?week=${week}&month=${month}&category=${category}`;
         const dailyRes = await axios.get(dailyUrl, {
@@ -178,12 +178,12 @@ const Context = ({ children }) => {
           });
         }
       }
+      handleLoading(false);
     } catch (error) {
       toast.error(error.message, {
         autoClose: 2000,
       });
     }
-    handleLoading(false);
   };
 
   const fetchUser = async () => {

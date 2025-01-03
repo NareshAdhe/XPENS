@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import ChangePassword from "../components/ChangePassword";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import { TbPigMoney } from "react-icons/tb";
 import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
@@ -89,8 +89,13 @@ const Profile = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      transition: { duration: 0.5, ease: "easeInOut", delay: 0.3 },
     },
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } },
   };
 
   const boxVariants = {
@@ -98,7 +103,7 @@ const Profile = () => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      transition: { duration: 0.5, ease: "easeInOut", delay: 0.3 },
     },
   };
 
@@ -109,7 +114,7 @@ const Profile = () => {
 
   return (
     <motion.div
-      variants={profileVariants}
+      variants={containerVariants}
       initial="hidden"
       animate="visible"
       className="bg-white border-2 sm:border-4 border-[#4842d2] px-3 py-5 rounded-lg shadow-md w-full mx-auto overflow-x-hidden overflow-y-auto"

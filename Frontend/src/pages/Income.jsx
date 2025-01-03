@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, delay, motion } from "framer-motion";
 import CreateBudget from "../components/CreateBudget";
 import AddBudget from "./AddBudget";
 import BudgetList from "../components/BudgetList";
@@ -32,6 +32,14 @@ const Income = () => {
     visible: { opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } },
   };
 
+  const addBudgetVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeInOut", delay: 0.5 },
+    },
+  };
+
   return (
     <motion.div
       variants={containerVariants}
@@ -50,7 +58,12 @@ const Income = () => {
         handleBudgetStartDate={handleBudgetStartDate}
         handleBudgetEndDate={handleBudgetEndDate}
       />
-      <motion.div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 items-stretch">
+      <motion.div
+        variants={addBudgetVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 items-stretch"
+      >
         <CreateBudget onClick={handleClick} />
         <AnimatePresence>
           {showAddBudget && <AddBudget onClick={handleClick} />}

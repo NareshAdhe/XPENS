@@ -15,7 +15,7 @@ const Dashboard = () => {
       transition: {
         duration: 0.5,
         ease: "easeInOut",
-        delay: 0.3,
+        delay: 0.4,
       },
     },
   };
@@ -24,7 +24,7 @@ const Dashboard = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.4, ease: "easeInOut", delay: 0.7 },
+      transition: { duration: 0.4, ease: "easeInOut", delay: 0.6 },
     },
   };
 
@@ -33,19 +33,19 @@ const Dashboard = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: "easeInOut", delay: 1.1 },
+      transition: { duration: 0.4, ease: "easeInOut", delay: 0.8 },
     },
   };
 
   const incomeVariants = {
-    hidden: { opacity: 0, y: -200 },
+    hidden: { opacity: 0, y: -100 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.4,
         ease: "easeInOut",
-        delay: 1.5,
+        delay: 1.1,
         staggerChildren: 0.3,
       },
     },
@@ -63,15 +63,10 @@ const Dashboard = () => {
       animate="visible"
       className="overflow-auto bg-white border-2 sm:border-4 border-[#4842d2] w-full px-3 py-5 sm:p-4 rounded-lg"
     >
-      <motion.h1
-        initial={{ opacity: 0, y: "-100%" }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3, ease: "easeInOut" }}
-        className="mb-8 text-xl md:text-3xl font-semibold"
-      >
+      <h1 className="mb-8 text-xl md:text-3xl font-semibold">
         Hello {user.name}😊 Welcome To{" "}
         <span className="text-[#4842d2]">XPENS</span>
-      </motion.h1>
+      </h1>
       <motion.div
         variants={containerVariants}
         initial="hidden"

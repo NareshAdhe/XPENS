@@ -35,9 +35,15 @@ const Expense = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } },
+  };
+
+  const filterVariants = {
+    hidden: { opacity: 0, x: -100 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.4, ease: "easeInOut" },
+      x: 0,
+      transition: { duration: 0.4, ease: "easeInOut", delay: 0.3 },
     },
   };
 
@@ -69,19 +75,12 @@ const Expense = () => {
           />
         )}
       </AnimatePresence>
-      <div className="py-4 flex flex-col gap-8 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
-        <motion.h1
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-          className="text-3xl font-bold"
-        >
-          My Expenses
-        </motion.h1>
+      <div className="flex flex-col gap-8 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-3xl font-bold">My Expenses</h1>
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
+          variants={filterVariants}
+          initial="hidden"
+          animate="visible"
         >
           <Link
             onClick={() => handleShowPopup(true)}
