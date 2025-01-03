@@ -41,23 +41,6 @@ const Expense = () => {
     },
   };
 
-  const buttonVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.3, ease: "easeInOut", delay: 0.45 },
-    },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.1 },
-    },
-    tap: {
-      scale: 1,
-      transition: { duration: 0.1 },
-    },
-  };
-
   return (
     <motion.div
       variants={containerVariants}
@@ -96,20 +79,13 @@ const Expense = () => {
           My Expenses
         </motion.h1>
         <motion.div
-          variants={buttonVariants}
-          initial="hidden"
-          whileHover="hover"
-          whileTap="tap"
-          animate="visible"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, delay: 0.5 }}
         >
           <Link
             onClick={() => handleShowPopup(true)}
             className="px-4 sm:px-2 py-2 bg-[#4842d2] text-white text-lg tracking-wide font-sans rounded-md hover:bg-blue-800"
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
-            whileHover="hover"
-            whileTap="tap"
           >
             Add Expenses
           </Link>
