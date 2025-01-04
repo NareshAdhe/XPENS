@@ -18,6 +18,7 @@ const VerifyOTP = () => {
     setOtpSent,
   } = useContext(AppContext);
   const [timer, setTimer] = useState(60);
+  const [expired, setExpired] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isResending, setIsResendingOtp] = useState(false);
   const first = useRef(null);
@@ -26,7 +27,7 @@ const VerifyOTP = () => {
   const fourth = useRef(null);
 
   useEffect(() => {
-    if (timer > 0 && otpSent) {
+    if (timer > 0 && otpSent && !expired) {
       const timeout = setTimeout(() => {
         setTimer((prev) => prev - 1);
       }, 1000);
@@ -34,6 +35,7 @@ const VerifyOTP = () => {
     }
     if (timer == 0) {
       setOtpSent(false);
+      setExpired(true);
       setTimer(60);
     }
   }, [timer, otpSent]);
@@ -73,7 +75,7 @@ const VerifyOTP = () => {
         }
       );
       if (response.data.success) {
-        setTimer(60);
+        setExpired(false);
         setOtpSent(true);
         toast.success(response.data.message, {
           autoClose: 2000,
@@ -196,7 +198,7 @@ const VerifyOTP = () => {
         <h2 className=" relative text-2xl font-semibold text-center text-white mb-12">
           Verify OTP
           <p className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-base">
-            {timer == 0 ? "OTP EXPIRED" : `${timer} seconds`}
+            {expired ? "OTP EXPIRED" : `${timer} seconds`}
           </p>
         </h2>
         <form
