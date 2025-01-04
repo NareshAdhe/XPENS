@@ -74,7 +74,7 @@ const AddExpense = ({
         time: getFormattedTime(),
       };
 
-      if (!noIncome) {
+      if (!noIncome || isEditing) {
         dataToSubmit.incomeId = incomeId;
       } else {
         dataToSubmit.noIncome = true;

@@ -58,7 +58,7 @@ const AddExpensePopup = ({ handleShowPopup, handleShowAddExpense }) => {
               handleShowPopup(false);
               navigate("/dashboard/incomes");
             }}
-            className="px-4 py-2 bg-blue-700 border border-blue-800 rounded-md text-white hover:bg-blue-700"
+            className="w-24 py-2 bg-blue-700 border border-blue-800 rounded-md text-white hover:bg-blue-700"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -67,7 +67,7 @@ const AddExpensePopup = ({ handleShowPopup, handleShowAddExpense }) => {
           </motion.button>
           <motion.button
             onClick={handleAddExpense}
-            className="px-4 py-2 bg-gray-200 border border-gray-700 hover:bg-gray-300 rounded-md"
+            className="w-24 py-2 bg-gray-200 border border-gray-700 hover:bg-gray-300 rounded-md"
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"

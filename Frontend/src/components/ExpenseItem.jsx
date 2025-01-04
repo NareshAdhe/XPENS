@@ -45,6 +45,7 @@ const ExpenseItem = ({ expense, incomeId, budgetExpenseEditing = true }) => {
         name: expense.name,
         amount: expense.amount,
         category: expense.category,
+        incomeId,
       });
     } else {
       toast.success("You can edit your expense here!!", {
