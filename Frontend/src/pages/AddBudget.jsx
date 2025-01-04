@@ -193,7 +193,7 @@ const AddBudget = ({
             id="category"
             value={formData.category}
             onChange={handleChange}
-            className="mt-1.5 w-full rounded-md py-2 px-4 text-gray-700 border border-gray-500 sm:text-sm outline-none"
+            className="mt-1.5 w-full bg-transparent rounded-md py-2 px-4 text-gray-700 border border-gray-500 sm:text-sm outline-none"
           >
             <option value="" className="text-gray-400">
               Select Budget Category
