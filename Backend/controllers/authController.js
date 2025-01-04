@@ -719,8 +719,8 @@ export const checkMail = async (req, res) => {
       }
     );
     res.cookie("resetToken", token, {
-      httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 5 * 60 * 1000,
     });
     const otp = String(Math.floor(Math.random() * 9000 + 1000));
