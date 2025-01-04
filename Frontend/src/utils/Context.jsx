@@ -186,22 +186,6 @@ const Context = ({ children }) => {
     }
   };
 
-  const fetchUser = async () => {
-    try {
-      const url = `${backendURI}/api/auth/user`;
-      const response = await axios.get(url, {
-        withCredentials: true,
-      });
-      if (response.data.success) {
-        setUser(response.data.user);
-      } else {
-        toast.error("Failed to fetch user data.", { autoClose: 2000 });
-      }
-    } catch (error) {
-      toast.error(error.message, { autoClose: 2000 });
-    }
-  };
-
   const fetchBudgetList = async () => {
     try {
       const response = await axios.get(`${backendURI}/api/incomes/getIncomes`, {
@@ -232,38 +216,36 @@ const Context = ({ children }) => {
   };
 
   useEffect(() => {
-    const verifyToken = async () => {
-      const token = localStorage.getItem("authToken");
+    const fetchUser = async () => {
       setIsRefreshing(true);
-      if (token) {
-        try {
-          const response = await axios.post(
-            `${backendURI}/api/auth/verify-token`,
-            {},
-            {
-              headers: { Authorization: `Bearer ${token}` },
-              withCredentials: true,
-            }
-          );
-
-          if (response.data.success) {
-            setLoggedIn(true);
-          } else {
+      try {
+        const url = `${backendURI}/api/auth/user`;
+        const response = await axios.get(url, {
+          withCredentials: true,
+        });
+        if (response.data.success) {
+          setUser(response.data.user);
+          setLoggedIn(true);
+        } else {
+          setLoggedIn(false);
+          if (localStorage.getItem("authToken"))
             localStorage.removeItem("authToken");
-          }
-        } catch (error) {
-          localStorage.removeItem("authToken");
+          toast.error(response.data.user, { autoClose: 2000 });
         }
+      } catch (error) {
+        if (localStorage.getItem("authToken"))
+          localStorage.removeItem("authToken");
+        setLoggedIn(false);
+        toast.error(error.message, { autoClose: 2000 });
+      } finally {
+        setIsRefreshing(false);
       }
-      setIsRefreshing(false);
     };
-
-    verifyToken();
+    fetchUser();
   }, []);
 
   useEffect(() => {
     if (loggedIn) {
-      fetchUser();
       fetchBudgetList();
       fetchExpenseList();
     }
