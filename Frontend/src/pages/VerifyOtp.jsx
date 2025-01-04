@@ -32,7 +32,10 @@ const VerifyOTP = () => {
       }, 1000);
       return () => clearTimeout(timeout);
     }
-    if (timer == 0) setOtpSent(false);
+    if (timer == 0) {
+      setOtpSent(false);
+      setTimer(60);
+    }
   }, [timer, otpSent]);
 
   const handleChange = (index, e) => {
