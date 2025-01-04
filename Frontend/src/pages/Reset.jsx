@@ -80,7 +80,7 @@ const Reset = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-gray-50">
+    <div className="flex justify-center items-center min-h-screen w-full bg-gray-50 p-[5vw]">
       <div className="w-full sm:w-96 bg-gradient-to-b from-black via-[#00152d] to-white shadow-2xl rounded-lg p-6">
         <h2 className=" relative text-2xl font-semibold text-center text-white mb-4">
           {isResetEmailVerified ? "Reset Password" : "Verify Email"}
