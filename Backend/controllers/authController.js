@@ -191,6 +191,7 @@ export const login = async (req, res) => {
       expiresIn: "5m",
     });
     res.cookie("verifyToken", token, {
+      httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 5 * 60 * 1000,
@@ -551,7 +552,6 @@ export const sendOtp = async (req, res) => {
       <h1>Your OTP Code</h1>
     </div>
     <div class="content">
-      <p>Hello,</p>
       <p>Your one-time password (OTP) for completing your action is:</p>
       <div class="otp">${otp}</div>
       <p>This OTP is valid for 1 minute. Please do not share it with anyone.</p>
@@ -559,7 +559,7 @@ export const sendOtp = async (req, res) => {
     </div>
     <div class="footer">
       <p>Thank you for using our service!</p>
-      <p><strong>Xpens</strong></p>
+      <p><strong>XPENS</strong></p>
     </div>
   </div>
 </body>
@@ -719,6 +719,7 @@ export const checkMail = async (req, res) => {
       }
     );
     res.cookie("resetToken", token, {
+      httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 5 * 60 * 1000,
@@ -839,6 +840,7 @@ export const changePassword = async (req, res) => {
     res.clearCookie("resetToken", {
       httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     res.json({
       success: true,
@@ -857,7 +859,6 @@ export const verifyResetOtp = async (req, res) => {
 
   try {
     const user = await userModel.findById(userId);
-    console.log(otp2);
 
     if (!user) {
       return res.json({
