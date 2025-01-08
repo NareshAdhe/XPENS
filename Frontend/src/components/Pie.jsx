@@ -463,7 +463,7 @@ const Pie = () => {
           <div className="flex flex-col items-center gap-2">
             <button
               className={`px-3 py-2 rounded-md ${
-                type === "expense" ? "bg-blue-500 text-white" : "bg-gray-200"
+                type === "expense" ? "bg-[#4842d2] text-white" : "bg-gray-200"
               }`}
               onClick={() => handleTypeChange("expense")}
             >
@@ -471,7 +471,7 @@ const Pie = () => {
             </button>
             <button
               className={`px-4 py-2 rounded-md ${
-                type === "income" ? "bg-blue-500 text-white" : "bg-gray-200"
+                type === "income" ? "bg-#[4842d2] text-white" : "bg-gray-200"
               }`}
               onClick={() => handleTypeChange("income")}
             >
@@ -481,7 +481,7 @@ const Pie = () => {
           <div className="flex flex-col items-center gap-2">
             <button
               className={`px-6 py-2 rounded-md ${
-                time === "daily" ? "bg-blue-500 text-white" : "bg-gray-200"
+                time === "daily" ? "bg-[#4842d2] text-white" : "bg-gray-200"
               }`}
               onClick={() => handleTimeChange("daily")}
             >
@@ -489,7 +489,7 @@ const Pie = () => {
             </button>
             <button
               className={`px-4 py-2 rounded-md ${
-                time === "weekly" ? "bg-blue-500 text-white" : "bg-gray-200"
+                time === "weekly" ? "bg-[#4842d2] text-white" : "bg-gray-200"
               }`}
               onClick={() => handleTimeChange("weekly")}
             >
