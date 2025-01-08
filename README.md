@@ -1,4 +1,4 @@
-# XPENS - Personal Finance Tracker  
+# XPENS - Personal Finance Manager 
 
 XPENS is a personal finance management application designed to simplify tracking and analyzing your expenses and income. With intuitive features, secure authentication, and visual insights, XPENS ensures you stay in control of your finances.  
 
