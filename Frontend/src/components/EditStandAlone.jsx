@@ -22,26 +22,6 @@ const EditStandAlone = ({ expense, handleStandAloneEdit }) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const getFormattedDate = () => {
-    const date = new Date();
-    const formattedDate = String(date.getDate()).padStart(2, "0");
-    const formattedMonth = String(date.getMonth() + 1).padStart(2, "0");
-    const formattedYear = date.getFullYear().toString().slice(-2);
-    const formattedDateString = `${formattedDate}-${formattedMonth}-${formattedYear}`;
-    return formattedDateString;
-  };
-
-  const getFormattedTime = () => {
-    const date = new Date();
-    const hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-    const formattedHours = String(hours).padStart(2, "0");
-    const formattedMinutes = String(date.getMinutes()).padStart(2, "0");
-    const period = date.getHours() >= 12 ? "PM" : "AM";
-    const formattedTimeString = `${formattedHours}:${formattedMinutes} ${period}`;
-
-    return formattedTimeString;
-  };
-
   const handleCrossClick = () => {
     handleStandAloneEdit(false);
   };
@@ -53,8 +33,6 @@ const EditStandAlone = ({ expense, handleStandAloneEdit }) => {
     try {
       const dataToSubmit = {
         ...formData,
-        date: getFormattedDate(),
-        time: getFormattedTime(),
       };
       const url = `${backendURI}/api/expenses/editStandAlone/${expense._id}`;
       const response = await axios.post(url, dataToSubmit, {

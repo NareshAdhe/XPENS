@@ -106,9 +106,9 @@ export const deleteIncome = async (req, res) => {
 
 export const editIncome = async (req, res) => {
   const { incomeId } = req.params;
-  const { title, amount, date, time, category, image } = req.body;
+  const { title, amount, category, image } = req.body;
   try {
-    if (!title || !date || !time || !category || !image) {
+    if (!title || !category || !image) {
       return res.json({
         success: false,
         message: "All fields are required",
@@ -134,14 +134,22 @@ export const editIncome = async (req, res) => {
           "Expenses exceeding the new income amount manupulate income amount or your expenses",
       });
     }
-    await incomeModel.findByIdAndUpdate(incomeId, {
-      title,
-      amount: Number(amount),
-      date,
-      time,
-      category,
-      image,
-    });
+    const updatedExpense = await incomeModel.findByIdAndUpdate(
+      incomeId,
+      {
+        title,
+        amount: Number(amount),
+        category,
+        image,
+      },
+      { new: true }
+    );
+    if (!updatedExpense) {
+      return res.json({
+        success: false,
+        message: "Failed to update income",
+      });
+    }
     res.json({
       success: true,
       message: "Income updated successfully",
@@ -190,9 +198,7 @@ export const dailyIncome = async (req, res) => {
       incomeDate--;
       let weekIndex = Math.floor(incomeDate / 7);
       weekIndex = Math.min(weekIndex, 3);
-      if (incomeDate < 28) {
-        incomeDate = incomeDate % 7;
-      } else incomeDate = 6;
+      incomeDate = incomeDate % 7;
       if (Number(week) === weekIndex && Number(month) === incomeMonth - 1) {
         dailyIncomes[incomeMonth - 1][weekIndex][incomeDate] += income.amount;
       }
@@ -272,9 +278,7 @@ export const dailyCategoryIncome = async (req, res) => {
       incomeDate--;
       let weekIndex = Math.floor(incomeDate / 7);
       weekIndex = Math.min(weekIndex, 3);
-      if (incomeDate < 28) {
-        incomeDate = incomeDate % 7;
-      } else incomeDate = 6;
+      incomeDate %= 7;
       if (Number(week) === weekIndex && Number(month) === incomeMonth - 1) {
         dailyCategoryIncomes[incomeMonth - 1][weekIndex][incomeDate] +=
           income.amount;

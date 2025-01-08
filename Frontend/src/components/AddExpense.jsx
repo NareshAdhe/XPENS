@@ -17,8 +17,6 @@ const AddExpense = ({
 }) => {
   const [formData, setFormData] = useState({
     name: expense?.name || "",
-    date: "",
-    time: "",
     amount: expense?.amount || "",
     category: expense?.category || "",
   });
@@ -67,17 +65,19 @@ const AddExpense = ({
       const url = isEditing
         ? `${backendURI}/api/expenses/editExpense/${expenseId}`
         : `${backendURI}/api/expenses/addExpense`;
-
       const dataToSubmit = {
         ...formData,
-        date: getFormattedDate(),
-        time: getFormattedTime(),
       };
 
       if (!noIncome || isEditing) {
         dataToSubmit.incomeId = incomeId;
       } else {
         dataToSubmit.noIncome = true;
+      }
+
+      if (!isEditing) {
+        dataToSubmit.date = getFormattedDate();
+        dataToSubmit.time = getFormattedTime();
       }
 
       const response = await axios.post(url, dataToSubmit, {
@@ -97,8 +97,6 @@ const AddExpense = ({
         } else {
           setFormData({
             name: expense?.name || "",
-            date: "",
-            time: "",
             amount: expense?.amount || "",
             category: expense?.category || "",
           });

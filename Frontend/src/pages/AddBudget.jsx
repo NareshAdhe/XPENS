@@ -66,9 +66,12 @@ const AddBudget = ({
       const formattedTime = getFormattedTime();
       const dataToSubmit = {
         ...formData,
-        date: formattedDate,
-        time: formattedTime,
       };
+
+      if (!isBudgetEditing) {
+        dataToSubmit.date = formattedDate;
+        dataToSubmit.time = formattedTime;
+      }
 
       const url = isBudgetEditing
         ? `${backendURI}/api/incomes/editIncome/${budget._id}`

@@ -135,10 +135,10 @@ export const deleteBudgetExpense = async (req, res) => {
 };
 
 export const editExpense = async (req, res) => {
-  const { incomeId, name, amount, date, time, category } = req.body;
+  const { incomeId, name, amount, category } = req.body;
   const { expenseId } = req.params;
   try {
-    if (!name || !date || !time || !category) {
+    if (!name || !category) {
       return res.json({
         success: false,
         message: "All fields are required",
@@ -182,13 +182,15 @@ export const editExpense = async (req, res) => {
         message: "Expense not found",
       });
     }
-    const updatedExpense = await expenseModel.findByIdAndUpdate(expenseId, {
-      name,
-      amount: Number(amount),
-      date,
-      time,
-      category,
-    });
+    const updatedExpense = await expenseModel.findByIdAndUpdate(
+      expenseId,
+      {
+        name,
+        amount: Number(amount),
+        category,
+      },
+      { new: true }
+    );
     if (!updatedExpense) {
       return res.json({
         success: false,
@@ -288,9 +290,9 @@ export const deleteStandAlone = async (req, res) => {
 
 export const editStandAlone = async (req, res) => {
   const { expenseId } = req.params;
-  const { name, amount, category, date, time, userId } = req.body;
+  const { name, amount, category, userId } = req.body;
   try {
-    if (!name || !date || !time || !category) {
+    if (!name || !category) {
       return res.json({
         success: false,
         message: "All fields are required",
@@ -323,8 +325,6 @@ export const editStandAlone = async (req, res) => {
         name,
         amount: Number(amount),
         category,
-        date,
-        time,
       },
       { new: true }
     );
@@ -371,9 +371,7 @@ export const dailyExpense = async (req, res) => {
       expenseDate--;
       let weekIndex = Math.floor(expenseDate / 7);
       weekIndex = Math.min(weekIndex, 3);
-      if (expenseDate < 28) {
-        expenseDate = expenseDate % 7;
-      } else expenseDate = 6;
+      expenseDate %= 7;
       if (Number(week) === weekIndex && Number(month) === expenseMonth - 1) {
         dailyExpenses[expenseMonth - 1][weekIndex][expenseDate] +=
           expense.amount;
@@ -453,9 +451,7 @@ export const dailyCategoryExpense = async (req, res) => {
       expenseDate--;
       let weekIndex = Math.floor(expenseDate / 7);
       weekIndex = Math.min(weekIndex, 3);
-      if (expenseDate < 28) {
-        expenseDate = expenseDate % 7;
-      } else expenseDate = 6;
+      expenseDate %= 7;
       if (Number(week) === weekIndex && Number(month) === expenseMonth - 1) {
         dailyCategoryExpenses[expenseMonth - 1][weekIndex][expenseDate] +=
           expense.amount;
