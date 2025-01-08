@@ -471,7 +471,7 @@ const Pie = () => {
             </button>
             <button
               className={`px-4 py-2 rounded-md ${
-                type === "income" ? "bg-#[4842d2] text-white" : "bg-gray-200"
+                type === "income" ? "bg-[#4842d2] text-white" : "bg-gray-200"
               }`}
               onClick={() => handleTypeChange("income")}
             >
