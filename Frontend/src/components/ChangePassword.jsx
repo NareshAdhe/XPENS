@@ -68,7 +68,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <motion.div
+    <motion.form
       variants={changePasswordVariants}
       initial="hidden"
       animate="visible"
@@ -80,6 +80,7 @@ const ChangePassword = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative">
           <input
+            required
             autoComplete="off"
             type={passwordVisibility.oldPasswordVisible ? "text" : "password"}
             placeholder="Old Password"
@@ -101,6 +102,7 @@ const ChangePassword = () => {
         </div>
         <div className="relative">
           <input
+            required
             autoComplete="off"
             type={passwordVisibility.newPasswordVisible ? "text" : "password"}
             placeholder="New Password"
@@ -138,7 +140,7 @@ const ChangePassword = () => {
           "Update"
         )}
       </button>
-    </motion.div>
+    </motion.form>
   );
 };
 

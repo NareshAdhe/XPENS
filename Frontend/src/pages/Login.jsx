@@ -40,12 +40,10 @@ const Login = () => {
       const response = await axios.post(url, formData, {
         withCredentials: true,
       });
-      console.log(document.cookie.token);
       setLoading(false);
       if (response.data.success) {
         setOtpSent(true);
         navigate("/verify");
-        console.log(response.data.message);
         toast.success(response.data.message, {
           autoClose: 2000,
         });

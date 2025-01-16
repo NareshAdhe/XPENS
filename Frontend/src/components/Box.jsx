@@ -8,7 +8,7 @@ const Box = ({ bg = "", text, amount, icon }) => {
       </div>
       <div className="relative z-10">
         <p className="text-lg font-medium text-white mb-2 capitalize">{text}</p>
-        <h1 className="text-4xl font-bold text-white">₹ {amount}</h1>
+        <h1 className="text-2xl font-bold text-white">₹ {amount}</h1>
       </div>
     </div>
   );

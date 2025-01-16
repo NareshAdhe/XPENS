@@ -127,16 +127,16 @@ const Profile = () => {
           variants={profileVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col justify-between bg-white p-6 rounded-lg shadow-sm border-2 border-gray-300"
+          className="flex flex-col justify-between bg-white p-4 rounded-lg shadow-sm border-2 border-gray-300"
         >
           <div className="flex flex-col items-center">
             <div className="p-4 bg-gray-200 rounded-full">
               <CgProfile className="text-5xl text-gray-600" />
             </div>
             <h2 className="text-xl font-semibold text-gray-800 mt-4">{name}</h2>
-            <p className="text-sm 2xs:text-lg text-gray-500">{email}</p>
+            <p className="text-[13px] 2xs:text-lg text-gray-500">{email}</p>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 w-full">
             <motion.button
               onClick={handleLogout}
               className="w-full bg-red-600 text-white py-2 px-4 rounded-md flex items-center justify-center"

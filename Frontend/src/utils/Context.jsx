@@ -227,19 +227,21 @@ const Context = ({ children }) => {
           setUser(response.data.user);
           setLoggedIn(true);
         } else {
-          setLoggedIn(false);
-          if (localStorage.getItem("authToken"))
-            localStorage.removeItem("authToken");
-          toast.error(response.data.user, { autoClose: 2000 });
+          handleLogout(response.data.message);
         }
       } catch (error) {
-        if (localStorage.getItem("authToken"))
-          localStorage.removeItem("authToken");
-        setLoggedIn(false);
-        toast.error(error.message, { autoClose: 2000 });
+        handleLogout(error.message);
       } finally {
         setIsRefreshing(false);
       }
+    };
+
+    const handleLogout = (message) => {
+      if (localStorage.getItem("authToken")) {
+        localStorage.removeItem("authToken");
+      }
+      setLoggedIn(false);
+      toast.error(message, { autoClose: 2000 });
     };
     fetchUser();
   }, []);

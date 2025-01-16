@@ -214,7 +214,7 @@ export const login = async (req, res) => {
     }
     .header h1 {
       margin: 0;
-      color: #4CAF50;
+      color: #4842d2;
     }
     .content {
       padding: 20px;
@@ -321,6 +321,7 @@ export const verifyOtp = async (req, res) => {
       }
     );
     res.cookie("token", token, {
+      httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -352,7 +353,7 @@ export const verifyOtp = async (req, res) => {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .email-header {
-            background-color: #4caf50;
+            background-color: #4842d2;
             color: #ffffff;
             text-align: center;
             padding: 20px;
@@ -374,7 +375,7 @@ export const verifyOtp = async (req, res) => {
         }
         .btn {
             display: inline-block;
-            background-color: #4caf50;
+            background-color: #4842d2;
             color: white;
             text-decoration: none;
             padding: 10px 20px;
@@ -382,7 +383,7 @@ export const verifyOtp = async (req, res) => {
             font-weight: bold;
         }
         .btn:hover {
-            background-color: #45a049;
+            background-color: #4842d2;
         }
     </style>
 </head>
@@ -397,7 +398,7 @@ export const verifyOtp = async (req, res) => {
             <p>If you have any questions, feel free to reply to this email. We're here to help!</p>
         </div>
         <div class="email-footer">
-            &copy; 2024 Xpens. All rights reserved.
+            &copy; 2024 XPENS. All rights reserved.
         </div>
     </div>
 </body>
@@ -486,7 +487,7 @@ export const sendOtp = async (req, res) => {
     }
     .header h1 {
       margin: 0;
-      color: #4CAF50;
+      color: #4842d2;
     }
     .content {
       padding: 20px;
@@ -583,7 +584,7 @@ export const sendResetOtp = async (req, res) => {
     }
     .header h1 {
       margin: 0;
-      color: #4CAF50;
+      color: #4842d2;
     }
     .content {
       padding: 20px;
@@ -622,7 +623,7 @@ export const sendResetOtp = async (req, res) => {
     </div>
     <div class="footer">
       <p>Thank you for using our service!</p>
-      <p><strong>Xpens</strong></p>
+      <p><strong>XPENS</strong></p>
     </div>
   </div>
 </body>
@@ -707,7 +708,7 @@ export const checkMail = async (req, res) => {
     }
     .header h1 {
       margin: 0;
-      color: #4CAF50;
+      color: #4842d2;
     }
     .content {
       padding: 20px;
@@ -746,7 +747,7 @@ export const checkMail = async (req, res) => {
     </div>
     <div class="footer">
       <p>Thank you for using our service!</p>
-      <p><strong>Xpens</strong></p>
+      <p><strong>XPENS</strong></p>
     </div>
   </div>
 </body>
