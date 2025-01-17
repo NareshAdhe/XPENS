@@ -59,7 +59,7 @@ const BudgetItem = ({ budget, styles = "" }) => {
                 ₹{budget.spent} Spent
               </h1>
               <h1 className="2xs:text-sm md:text-lg text-gray-800 3xs:text-[12px]">
-                ₹{budget.amount - budget.spent} Rem
+                ₹{Math.round((budget.amount - budget.spent) * 100) / 100} Rem
               </h1>
             </div>
             <ProgressBar

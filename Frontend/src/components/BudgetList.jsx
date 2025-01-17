@@ -52,9 +52,12 @@ const BudgetList = ({ category, startDate, endDate }) => {
 
   return (
     <>
-      {filteredBudgets.map((budget) => (
-        <BudgetItem key={budget._id} budget={budget} />
-      ))}
+      {filteredBudgets
+        .slice()
+        .reverse()
+        .map((budget) => (
+          <BudgetItem key={budget._id} budget={budget} />
+        ))}
     </>
   );
 };

@@ -125,7 +125,7 @@ const ChangePassword = () => {
       </div>
       <button
         onClick={handlePasswordChange}
-        className="xs:w-48 flex justify-center items-center mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-all"
+        className="xs:w-48 w-24 flex justify-center items-center my-4 bg-[#4842d2] text-white py-2 px-4 rounded-md hover:bg-[#4842c2] transition-all"
       >
         {isLoading ? (
           <TailSpin

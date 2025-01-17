@@ -52,7 +52,7 @@ const AddExpensePopup = ({ handleShowPopup, handleShowAddExpense }) => {
           included in any income or you can make an expense which will be
           included inside one of the incomes.
         </p>
-        <div className="mt-8 flex items-end justify-end gap-8">
+        <div className="mt-8 flex items-end justify-end gap-4">
           <motion.button
             onClick={() => {
               handleShowPopup(false);

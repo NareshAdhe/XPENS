@@ -27,9 +27,9 @@ const BudgetExpenses = ({ incomeId }) => {
   }, [updateExpense]);
 
   return (
-    <div className="bg-gray-200 p-4 rounded-lg shadow-md mt-4 border border-gray-400">
+    <div className="bg-gray-200 px-4 pt-4 rounded-lg shadow-md mt-4 border border-gray-400">
       <h2 className="text-2xl font-semibold text-gray-800">Latest Expenses</h2>
-      <div className="grid grid-cols-1 gap-5 my-10">
+      <div className="grid grid-cols-1 gap-5 my-6">
         <div className="hidden xs:grid items-center grid-cols-[4fr,1fr,2fr] gap-6 p-4 text-base font-medium text-gray-800 bg-gray-300 border-2 rounded-t-lg">
           <h1 className="justify-self-stretch text-left">Name</h1>
           <h1 className="justify-self-start text-center">Amount</h1>

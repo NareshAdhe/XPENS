@@ -84,7 +84,7 @@ const Expense = () => {
         >
           <Link
             onClick={() => handleShowPopup(true)}
-            className="px-4 sm:px-2 py-2 bg-[#4842d2] text-white text-lg tracking-wide font-sans rounded-md hover:bg-blue-800"
+            className="px-4 py-2 bg-[#4842d2] text-white text-lg tracking-wide font-sans rounded-md hover:bg-blue-800"
           >
             Add Expenses
           </Link>

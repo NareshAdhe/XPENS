@@ -108,8 +108,10 @@ const Dashboard = () => {
               </Link>
             </div>
           ) : (
-            budgetList.map((budget, index) =>
-              index <= 2 ? (
+            budgetList
+              .slice(-3)
+              .reverse()
+              .map((budget, index) => (
                 <motion.div
                   variants={childrenVariants}
                   initial="hidden"
@@ -118,10 +120,7 @@ const Dashboard = () => {
                 >
                   <BudgetItem budget={budget} />
                 </motion.div>
-              ) : (
-                ""
-              )
-            )
+              ))
           )}
         </motion.div>
       </motion.div>

@@ -223,7 +223,7 @@ const AddExpense = ({
             id="category"
             value={formData.category}
             onChange={handleChange}
-            className="cursor-pointer mt-1.5 w-full rounded-md py-2 px-4 text-gray-700 border bg-transparent border-gray-500 sm:text-sm outline-none"
+            className="cursor-pointer mt-1.5 w-full rounded-md p-2 text-gray-700 border bg-transparent border-gray-500 sm:text-sm outline-none"
           >
             <option value="" className="text-gray-400">
               Select Expense Category

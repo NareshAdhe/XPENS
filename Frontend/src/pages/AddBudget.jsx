@@ -207,11 +207,23 @@ const AddBudget = ({
             <option value="business" className="bg-green-50">
               Business/Entrepreneurship
             </option>
+            <option value="freelancing" className="bg-blue-50">
+              Freelancing (Gig Economy)
+            </option>
             <option value="investement" className="bg-yellow-50">
               Investement (Stock Market, Mutual Funds)
             </option>
             <option value="agriculture" className="bg-red-50">
               Agriculture
+            </option>
+            <option value="content" className="bg-red-50">
+              Online Platforms (Youtube)
+            </option>
+            <option value="scheme" className="bg-purple-50">
+              Government Schemes
+            </option>
+            <option value="interest" className="bg-indigo-50">
+              Interest Income
             </option>
             <option value="saving" className="bg-pink-50">
               Savings Returns
@@ -222,7 +234,7 @@ const AddBudget = ({
             <option value="rent" className="bg-green-50">
               Rental Income
             </option>
-            <option value="other" className="bg-slate-50">
+            <option value="other" className="bg-blue-50">
               Other
             </option>
           </select>

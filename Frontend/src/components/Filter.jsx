@@ -50,7 +50,7 @@ const Filter = ({
         Utilities (Electricity, Water, Internet)
       </option>
       <option value="groceries" className="bg-green-50">
-        Groceries
+        Groceries (Food,Shopping,Festivals,Daily Needs)
       </option>
       <option value="transportation" className="bg-yellow-50">
         Transportation (Fuel, Public Transit)
@@ -111,6 +111,9 @@ const Filter = ({
       </option>
       <option value="rent" className="bg-green-50">
         Rental Income
+      </option>
+      <option value="other" className="bg-blue-50">
+        Other
       </option>
     </>
   );
