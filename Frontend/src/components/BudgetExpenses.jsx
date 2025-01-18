@@ -36,13 +36,16 @@ const BudgetExpenses = ({ incomeId }) => {
           <h1 className="justify-self-end text-right">Action</h1>
         </div>
         {budgetExpenseList?.length > 0 ? (
-          budgetExpenseList.map((expense, index) => (
-            <ExpenseItem
-              expense={expense}
-              key={expense._id}
-              incomeId={incomeId}
-            />
-          ))
+          budgetExpenseList
+            .slice()
+            .reverse()
+            .map((expense, index) => (
+              <ExpenseItem
+                expense={expense}
+                key={expense._id}
+                incomeId={incomeId}
+              />
+            ))
         ) : (
           <p className="text-center text-gray-500">No expenses recorded yet!</p>
         )}

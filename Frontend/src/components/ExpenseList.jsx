@@ -74,16 +74,19 @@ const ExpenseList = ({ category, startDate, endDate }) => {
       </motion.div>
 
       {fileteredExpenses?.length > 0 ? (
-        fileteredExpenses.map((expense) => (
-          <motion.div
-            key={expense._id}
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <ExpenseItem expense={expense} budgetExpenseEditing={false} />
-          </motion.div>
-        ))
+        fileteredExpenses
+          .slice()
+          .reverse()
+          .map((expense) => (
+            <motion.div
+              key={expense._id}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <ExpenseItem expense={expense} budgetExpenseEditing={false} />
+            </motion.div>
+          ))
       ) : (
         <motion.p
           initial={{ opacity: 0 }}
