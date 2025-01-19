@@ -162,8 +162,16 @@ export const editExpense = async (req, res) => {
         message: "Income not found",
       });
     }
+    const expense = await expenseModel.findById(expenseId);
+    if (!expense) {
+      return res.json({
+        success: false,
+        message: "Expense not found",
+      });
+    }
+    console.log(expense);
     const income = await incomeModel.findById(incomeId);
-    if (Number(amount) > income.amount - income.spent) {
+    if (Number(amount) > income.amount - (income.spent - expense.amount)) {
       return res.json({
         success: false,
         message: "Insufficient funds",
@@ -173,13 +181,6 @@ export const editExpense = async (req, res) => {
       return res.json({
         success: false,
         message: "Income not found",
-      });
-    }
-    const expense = await expenseModel.findById(expenseId);
-    if (!expense) {
-      return res.json({
-        success: false,
-        message: "Expense not found",
       });
     }
     const updatedExpense = await expenseModel.findByIdAndUpdate(
