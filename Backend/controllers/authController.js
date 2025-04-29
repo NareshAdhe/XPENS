@@ -457,6 +457,10 @@ export const sendOtp = async (req, res) => {
   const { email } = req.body;
   try {
     const user = await userModel.findOne({ email });
+    if(!user) return res.json({
+      success: false,
+      message: "User doesn't exist",
+    })
     const otp = String(Math.floor(Math.random() * 9000 + 1000));
     const hashedOtp = await bcrypt.hash(otp, 10);
     user.loginOtp = hashedOtp;
@@ -554,6 +558,10 @@ export const sendResetOtp = async (req, res) => {
   const { email } = req.body;
   try {
     const user = await userModel.findOne({ email });
+    if(!user) return res.json({
+      success: false,
+      message: "User doesn't exist",
+    })
     const otp = String(Math.floor(Math.random() * 9000 + 1000));
     const hashedOtp = await bcrypt.hash(otp, 10);
     user.resetOtp = hashedOtp;
