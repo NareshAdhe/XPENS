@@ -36,6 +36,8 @@ const Profile = () => {
     });
     let totalBalance = totalIncome - totalExpense;
     totalBalance = Math.round(totalBalance * 100) / 100;
+    totalIncome = Math.round(totalIncome * 100) / 100;
+    totalExpense = Math.round(totalExpense * 100) / 100;
     return { totalIncome, totalExpense, totalBalance };
   }, [updateBudget, updateExpense]);
 

@@ -244,7 +244,7 @@ const Context = ({ children }) => {
       toast.error(message, { autoClose: 2000 });
     };
     fetchUser();
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
