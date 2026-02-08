@@ -28,10 +28,7 @@ XPENS is a personal finance management application designed to simplify tracking
 3. Use filters to analyze transactions by categories or date ranges.  
 4. View bar and pie charts for visual insights.  
 5. Access your profile to check total income, expenses, and current balance.  
-6. Enjoy a sleek, responsive UI built with **Tailwind CSS** and smooth animations powered by **Framer Motion**.  
-
-## Note  
-This repository is private, and cloning or redistributing the code is not permitted.  
-
+6. Enjoy a sleek, responsive UI built with **Tailwind CSS** and smooth animations powered by **Framer Motion**.
+   
 ---  
 Happy tracking with XPENS!
